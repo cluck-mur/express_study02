@@ -1,0 +1,38 @@
+[Step 0] 開発環境インストール
+    (1)Node.jsをインストール
+
+    (2)次のnpmパッケージをグローバルインストール
+        ・yarn （好みなら。npmコマンドでもよい。）
+        ・express-generator
+        ・sequelize-cli
+
+[Step 1] projectを生成
+    $> express --view=ejs my_shopping_site
+
+[Step 2] npmパッケージ sequelizeをインストール（Model-View-Controllerアーキテクチャをサポートするため）
+    $> yarn add sequelize
+
+[Step 3] DBをインストール（例：SQLite3）
+    $> yarn add sqlite3
+
+[Step 4] Modelを生成 （完全生成とかモデルだけ生成とか）
+    (必須) $> npx sequelize init
+    (必須) $> npx sequelize model:generate --name User --attributes firstName:string,lastName:string,email:string
+        ※ DBのスキーマに合うようにコマンドオプションを調整すること
+    (任意) $> npx sequelize db:migrate
+    (任意) $> npx sequelize seed:generate --name seed-user
+    (任意) $> npx sequelize db:seed:all
+
+[Step 5] ModelとDBを接続するための設定をする
+    ./config/config.json を編集する
+
+ [Step 5] コントローラーフォルダとコントローラーのソースファイルを手で作る
+    作業内容は任意
+
+------------------------------
+（参考）
+【NodeでWebアプリ】(1) Express.jsをセットアップ = https://blog.otasys.co.jp/2019/07/01/express-1/
+【NodeでWebアプリ】(2) Express.jsのルーティング = https://blog.otasys.co.jp/2019/07/02/express-2/
+【NodeでWebアプリ】(3) Sequelizeでデータベース接続 = https://blog.otasys.co.jp/2019/07/03/express-3/
+【NodeでWebアプリ】(4) MVCでサイトを構成する = https://blog.otasys.co.jp/2019/07/04/express-4/
+
