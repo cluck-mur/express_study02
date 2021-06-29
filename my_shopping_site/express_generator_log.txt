@@ -1,0 +1,28 @@
+PS C:\work\express\express_study02> express --view=ejs my_shopping_site
+
+   create : my_shopping_site\
+   create : my_shopping_site\public\
+   create : my_shopping_site\public\javascripts\
+   create : my_shopping_site\public\images\
+   create : my_shopping_site\public\stylesheets\
+   create : my_shopping_site\public\stylesheets\style.css
+   create : my_shopping_site\routes\
+   create : my_shopping_site\routes\index.js
+   create : my_shopping_site\routes\users.js
+   create : my_shopping_site\views\
+   create : my_shopping_site\views\error.ejs
+   create : my_shopping_site\views\index.ejs
+   create : my_shopping_site\app.js
+   create : my_shopping_site\package.json
+   create : my_shopping_site\bin\
+   create : my_shopping_site\bin\www
+
+   change directory:
+     > cd my_shopping_site
+
+   install dependencies:
+     > npm install
+
+   run the app:
+     > SET DEBUG=my-shopping-site:* & npm start
+     
