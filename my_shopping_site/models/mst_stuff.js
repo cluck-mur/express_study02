@@ -2,6 +2,8 @@
 const {
   Model
 } = require('sequelize');
+const MstStuffConst = require('./mst_stuff_const');
+
 module.exports = (sequelize, DataTypes) => {
   class mst_stuff extends Model {
     /**
@@ -14,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   mst_stuff.init({
-    name: DataTypes.STRING
+    name: DataTypes.STRING(MstStuffConst.NAME_LENGTH),
+    password: DataTypes.STRING(MstStuffConst.PASSWORD_LENGTH)
   }, {
     sequelize,
     modelName: 'mst_stuff',
