@@ -1,0 +1,5 @@
+・DBにテーブル"mst_stuff"を作成
+    $> npx sequelize model:generate --name mst_stuff --attributes name:string password:string
+
+・migrationファイルを編集：スキーマの調整
+
