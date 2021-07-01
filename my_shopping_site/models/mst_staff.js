@@ -2,10 +2,10 @@
 const {
   Model
 } = require('sequelize');
-const MstStuffConst = require('./mst_stuff_const');
+const mstStaffConst = require('./mst_staff_const');
 
 module.exports = (sequelize, DataTypes) => {
-  class mst_stuff extends Model {
+  class mst_staff extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -15,12 +15,12 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
-  mst_stuff.init({
-    name: DataTypes.STRING(MstStuffConst.NAME_LENGTH),
-    password: DataTypes.STRING(MstStuffConst.PASSWORD_LENGTH)
+  mst_staff.init({
+    name: DataTypes.STRING(mstStaffConst.NAME_LENGTH),
+    password: DataTypes.STRING(mstStaffConst.PASSWORD_LENGTH)
   }, {
     sequelize,
-    modelName: 'mst_stuff',
+    modelName: 'mst_staff',
   });
-  return mst_stuff;
+  return mst_staff;
 };

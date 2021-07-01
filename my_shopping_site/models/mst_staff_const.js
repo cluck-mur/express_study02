@@ -1,4 +1,4 @@
-module.exports = new class MstStuffConst {
+module.exports = new class MstStaffConst {
     constructor() {
         this._NAME_LENGTH = 15;
         this._PASSWORD_LENGTH = 32;
