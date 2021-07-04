@@ -1,5 +1,5 @@
 ・DBテーブル"mst_stuff"のsequelizeファイルを生成
-    $> sequelize model:generate --name mst_staff --attributes name:string,password:string
+    $> sequelize model:generate --name mst_staff --attributes code:integer,name:string,password:string
 
 ・sequelizeファイルを編集 - スキーマの調整
     編集したファイル：./migrations/20210630022539-create-mst-stuff.js,
