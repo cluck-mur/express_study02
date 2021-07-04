@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>ろくまる農園　スタッフ一覧</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  スタッフ一覧<br /><br />
+  <form method="post" action="staff_edit">
+    <% for (let i=0; i < staffList.length; i++ ) { %>
+      <input type="radio" name="staffcode" value="<%= staffList[i].code %>">
+      <%- staffList[i].name %>
+      <br />
+    <% } %>
+    <input type="submit" value="修正">
+  </form>
+</body>
+
+</html>

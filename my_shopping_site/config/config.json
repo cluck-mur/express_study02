@@ -7,8 +7,7 @@
     "dialect": "sqlite",
     "storage": "./data/development.sqlite3",
     "define": {
-      "timestamps": false,
-      "id": false
+      "timestamps": false
     }
   },
   "test": {
@@ -19,8 +18,7 @@
     "dialect": "sqlite",
     "storage": "./data/test.sqlite3",
     "define": {
-      "timestamps": false,
-      "id": false
+      "timestamps": false
     }
   },
   "production": {
@@ -31,8 +29,7 @@
     "dialect": "sqlite",
     "storage": "./data/production.sqlite3",
     "define": {
-      "timestamps": false,
-      "id": false
+      "timestamps": false
     }
   }
 }

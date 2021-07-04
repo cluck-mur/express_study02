@@ -1,9 +1,8 @@
 'use strict';
 const db = require("../../models");
 const htmlspecialchars = require('htmlspecialchars');
-// const StaffAddDoneData = require('./staff_add_done_data');
 
-module.exports = new class StaffAddDoneController {
+module.exports = new class StaffListController {
     /**
      * constructor
      * コンストラクタ
@@ -17,20 +16,15 @@ module.exports = new class StaffAddDoneController {
      * @param {*} res 
      * @param {*} next 
      */
-    staffAddDone(req, res, next) {
-        console.log(req.body);
-        let staffName = req.body.name;
-        let staffPass = req.body.pass;
-
-        staffName = htmlspecialchars(staffName);
-        staffPass = htmlspecialchars(staffPass);
-
+    staffList(req, res, next) {
         //--
-        // データベースに保存
+        // データベースから取得
         //--
-        db.mst_staff.create({ name: staffName, password: staffPass })
-            .then(() => {
-                res.render('staff_add_done', { name: staffName });
+        db.mst_staff.findAll({
+            attributes: ['code', 'name']
+          })
+            .then((staffs) => {
+                res.render('staff_list', { staffList: staffs });
             })
             .catch((e) => {
                 // console.log(e);

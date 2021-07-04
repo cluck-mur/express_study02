@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'mst_staff',
     freezeTableName: true,  //テーブル名をモデルと同じにする
+    timestamps: false,  //タイムスタンプカラム(updatedAt, createdAt)を使用しない
   });
   mst_staff.removeAttribute('id');  // 'id'カラムを定義から削除
   return mst_staff;

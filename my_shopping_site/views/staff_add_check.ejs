@@ -25,8 +25,8 @@
     <br />
     このスタッフを登録します。<br />
     <form method='post' action='staff_add_done'>
-      <input type='hidden' name='name' value='<% staffName %>'>
-      <input type='hidden' name='pass' value='<% md5Pass %>'>
+      <input type='hidden' name='name' value='<%- staffName %>'>
+      <input type='hidden' name='pass' value='<%- md5Pass %>'>
       <br />
       <input type='button' onclick='history.back()' value='戻る'>
       <input type='submit' value='OK'>
