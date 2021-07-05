@@ -13,6 +13,8 @@ var staffAddDoneRouter = require('./routes/staff_add_done');
 var staffEditRouter = require('./routes/staff_edit');
 var staffEditCheckRouter = require('./routes/staff_edit_check');
 var staffEditDoneRouter = require('./routes/staff_edit_done');
+var staffBranchRouter = require('./routes/staff_branch');
+var staffNgRouter = require('./routes/staff_ng');
 
 var app = express();
 
@@ -35,6 +37,8 @@ app.use('/staff_add_done', staffAddDoneRouter);
 app.use('/staff_edit', staffEditRouter);
 app.use('/staff_edit_check', staffEditCheckRouter);
 app.use('/staff_edit_done', staffEditDoneRouter);
+app.use('/staff_branch', staffBranchRouter);
+app.use('/staff_ng', staffNgRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

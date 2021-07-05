@@ -8,13 +8,14 @@
 
 <body>
   スタッフ一覧<br /><br />
-  <form method="post" action="staff_edit">
+  <form method="post" action="staff_branch">
     <% for (let i=0; i < staffList.length; i++ ) { %>
       <input type="radio" name="staffcode" value="<%= staffList[i].code %>">
       <%- staffList[i].name %>
       <br />
     <% } %>
-    <input type="submit" value="修正">
+    <input type="submit" name="edit" value="修正">
+    <input type="submit" name="delete" value="削除">
   </form>
 </body>
 
