@@ -18,14 +18,26 @@ module.exports = new class StaffBranchController {
     staffBranch(req, res, next) {
         let requestedFunction = req.body.name;
 
-        if (!req.body.code) {
-            res.redirect('staff_ng');
-        }
-
-        if (req.body.edit) {
-            res.redirect(307, 'staff_edit');
+        if (req.body.disp) {
+            if (!req.body.staffcode) {
+                res.redirect('staff_ng');
+            } else {
+                res.redirect(307, 'staff_disp');
+            }
+        } else if (req.body.add) {
+            res.redirect('staff_add');
+        } else if (req.body.edit) {
+            if (!req.body.staffcode) {
+                res.redirect('staff_ng');
+            } else {
+                res.redirect(307, 'staff_edit');
+            }
         } else if (req.body.delete) {
-            res.redirect(307, 'staff_delete');
+            if (!req.body.staffcode) {
+                res.redirect('staff_ng');
+            } else {
+                res.redirect(307, 'staff_delete');
+            }
         }
     }
 }

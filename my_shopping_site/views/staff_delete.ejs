@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>ろくまる農園　スタッフ削除</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  スタッフ削除<br />
+  <br />
+  スタッフコード <br />
+  <%- staffData.code %><br />
+  スタッフ名<br />
+  <%- staffData.name %><br />
+  このスタッフを削除してよろしいですか？<br />
+  <br />
+  <form method="post" action="staff_delete_done">
+    <input type="hidden" name="code" value="<%- staffData.code %>">
+    <input type="button" onclick="history.back()" value="戻る">
+    <input type="submit" value="OK">
+  </form>
+</body>
+
+</html>
