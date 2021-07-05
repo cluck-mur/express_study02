@@ -17,7 +17,7 @@
 
 [Step 4] Modelを生成 （完全生成とかモデルだけ生成とか）
     (必須) $> npx sequelize init
-    (必須) $> npx sequelize model:generate --name User --attributes firstName:string,lastName:string,email:string
+    (必須) $> npx sequelize model:generate --name mst_staff --attributes firstName:string,lastName:string,email:string
         ※ DBのスキーマに合うようにコマンドオプションを調整すること
     (任意) $> npx sequelize db:migrate
     (任意) $> npx sequelize seed:generate --name seed-user
