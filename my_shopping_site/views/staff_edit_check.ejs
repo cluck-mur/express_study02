@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>ろくまる農園　スタッフ修正　チェック</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <% if (staffNameIsError) { %>
+    <%- staffNameErrorMessage %><br />
+  <% } else { %>
+    スタッフ名: <%- staffName %><br />
+  <% } %>
+
+  <% if (staffPassIsError) { %>
+    <%- staffPassErrorMessage %><br />
+  <% } %>
+
+  <% if (staffNameIsError || staffPassIsError) { %>
+    <form>
+      <input type="button" onclick="history.back()" value="戻る">
+    </form>
+  <% } else { %>
+    <br />
+    このスタッフを修正します。<br />
+    <form method="post" action="staff_edit_done">
+      <input type="hidden" name="code" value="<%- staffCode %>">
+      <input type="hidden" name="name" value="<%- staffName %>">
+      <input type="hidden" name="pass" value="<%- md5Pass %>">
+      <br />
+      <input type="button" onclick="history.back()" value="戻る">
+      <input type="submit" value="OK">
+    </form>
+  <% } %>
+</body>
+
+</html>
