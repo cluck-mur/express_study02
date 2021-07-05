@@ -1,6 +1,7 @@
 'use strict';
 const db = require("../../models");
 const htmlspecialchars = require('htmlspecialchars');
+const StaffConst = require('../common/staff_const');
 
 module.exports = new class StaffListController {
     /**
@@ -24,7 +25,7 @@ module.exports = new class StaffListController {
             attributes: ['code', 'name']
           })
             .then((staffs) => {
-                res.render('staff_list', { staffList: staffs });
+                res.render(StaffConst.buildViewPath('staff_list'), { staffList: staffs });
             })
             .catch((e) => {
                 // console.log(e);

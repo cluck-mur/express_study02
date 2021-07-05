@@ -1,6 +1,7 @@
 'use strict';
 const htmlspecialchars = require('htmlspecialchars');
 const StaffEditCheckData = require('./staff_edit_check_data');
+const StaffConst = require('../common/staff_const');
 
 module.exports = new class StaffEditCheckController{
     /**
@@ -50,7 +51,7 @@ module.exports = new class StaffEditCheckController{
         }
         
         let dataObject = staffEditCheckData.dataObject;
-        res.render('staff_edit_check', dataObject);
+        res.render(StaffConst.buildViewPath('staff_edit_check'), dataObject);
         // res.send("OK");
     }
 }

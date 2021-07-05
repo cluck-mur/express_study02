@@ -1,7 +1,7 @@
 'use strict';
 const db = require("../../models");
 const htmlspecialchars = require('htmlspecialchars');
-// const StaffAddDoneData = require('./staff_add_done_data');
+const StaffConst = require('../common/staff_const');
 
 module.exports = new class StaffDeleteDoneController {
     /**
@@ -33,7 +33,7 @@ module.exports = new class StaffDeleteDoneController {
         db.mst_staff.destroy({
             where: { code: staffCode }
         }).then(() => {
-            res.render('staff_delete_done', {});
+            res.render(StaffConst.buildViewPath('staff_delete_done'), {});
         }).catch((e) => {
             // console.log(e);
             // next();

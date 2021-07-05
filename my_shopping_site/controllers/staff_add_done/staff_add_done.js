@@ -1,7 +1,7 @@
 'use strict';
 const db = require("../../models");
 const htmlspecialchars = require('htmlspecialchars');
-// const StaffAddDoneData = require('./staff_add_done_data');
+const StaffConst = require('../common/staff_const');
 
 module.exports = new class StaffAddDoneController {
     /**
@@ -30,7 +30,7 @@ module.exports = new class StaffAddDoneController {
         //--
         db.mst_staff.create({ name: staffName, password: staffPass })
             .then(() => {
-                res.render('staff_add_done', { name: staffName });
+                res.render(StaffConst.buildViewPath('staff_add_done'), { name: staffName });
             })
             .catch((e) => {
                 // console.log(e);

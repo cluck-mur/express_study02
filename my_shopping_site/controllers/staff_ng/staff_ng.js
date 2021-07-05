@@ -1,7 +1,7 @@
 'use strict';
 const db = require("../../models");
 const htmlspecialchars = require('htmlspecialchars');
-// const StaffAddDoneData = require('./staff_add_done_data');
+const StaffConst = require('../common/staff_const');
 
 module.exports = new class StaffNgController {
     /**
@@ -18,6 +18,6 @@ module.exports = new class StaffNgController {
      * @param {*} next 
      */
     staffNg(req, res, next) {
-        res.render('staff_ng', {});
+        res.render(StaffConst.buildViewPath('staff_ng'), {});
     }
 }

@@ -34,17 +34,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/staff/staff_list', staffListRouter);
-app.use('/staff_add', staffAddRouter);
-app.use('/staff_add_check', staffAddCheckRouter);
-app.use('/staff_add_done', staffAddDoneRouter);
-app.use('/staff_edit', staffEditRouter);
-app.use('/staff_edit_check', staffEditCheckRouter);
-app.use('/staff_edit_done', staffEditDoneRouter);
-app.use('/staff_branch', staffBranchRouter);
-app.use('/staff_ng', staffNgRouter);
-app.use('/staff_delete', staffDeleteRouter);
-app.use('/staff_delete_done', staffDeleteDoneRouter);
-app.use('/staff_disp', staffDisplayRouter);
+app.use('/staff/staff_add', staffAddRouter);
+app.use('/staff/staff_add_check', staffAddCheckRouter);
+app.use('/staff/staff_add_done', staffAddDoneRouter);
+app.use('/staff/staff_edit', staffEditRouter);
+app.use('/staff/staff_edit_check', staffEditCheckRouter);
+app.use('/staff/staff_edit_done', staffEditDoneRouter);
+app.use('/staff/staff_branch', staffBranchRouter);
+app.use('/staff/staff_ng', staffNgRouter);
+app.use('/staff/staff_delete', staffDeleteRouter);
+app.use('/staff/staff_delete_done', staffDeleteDoneRouter);
+app.use('/staff/staff_disp', staffDisplayRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

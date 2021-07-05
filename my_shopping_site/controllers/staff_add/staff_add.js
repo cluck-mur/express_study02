@@ -1,3 +1,6 @@
+'use strict'
+const StaffConst = require('../common/staff_const');
+
 module.exports = new class StaffAddController{
     /**
      * constructor
@@ -13,6 +16,6 @@ module.exports = new class StaffAddController{
      * @param {*} next 
      */
     staffAdd(req, res, next) {
-        res.render('staff_add', { title: 'ろくまる農園' });
+        res.render(StaffConst.buildViewPath('staff_add'), { title: 'ろくまる農園' });
     }
 }

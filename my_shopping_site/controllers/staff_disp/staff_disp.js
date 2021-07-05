@@ -1,5 +1,6 @@
 'use strict'
 const db = require("../../models");
+const StaffConst = require('../common/staff_const');
 
 module.exports = new class StaffDispController {
     /**
@@ -29,7 +30,7 @@ module.exports = new class StaffDispController {
         }).then((staffs) => {
             if (staffs && staffs.length > 0) {
                 let staffData = staffs[0];
-                res.render('staff_disp', { staffData: staffData });
+                res.render(StaffConst.buildViewPath('staff_disp'), { staffData: staffData });
             } else {
                 res.send('指定されたスタッフは見つかりませんでした。');
             }
