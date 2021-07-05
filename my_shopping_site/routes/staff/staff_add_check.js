@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var staffAddCheckController = require('../controllers/staff_add_check/staff_add_check');
+var staffAddCheckController = require('../../controllers/staff/staff_add_check/staff_add_check');
 
 /**
  * POST home page.

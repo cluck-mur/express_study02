@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var staffAddController = require('../controllers/staff_add/staff_add');
+var staffAddController = require('../../controllers/staff/staff_add/staff_add');
 
 /**
  * GET home page.

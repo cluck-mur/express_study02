@@ -3,21 +3,22 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var StaffConst = require('./routes/staff/staff_const');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var staffListRouter = require('./routes/staff_list');
-var staffAddRouter = require('./routes/staff_add');
-var staffAddCheckRouter = require('./routes/staff_add_check');
-var staffAddDoneRouter = require('./routes/staff_add_done');
-var staffEditRouter = require('./routes/staff_edit');
-var staffEditCheckRouter = require('./routes/staff_edit_check');
-var staffEditDoneRouter = require('./routes/staff_edit_done');
-var staffBranchRouter = require('./routes/staff_branch');
-var staffNgRouter = require('./routes/staff_ng');
-var staffDeleteRouter = require('./routes/staff_delete');
-var staffDeleteDoneRouter = require('./routes/staff_delete_done');
-var staffDisplayRouter = require('./routes/staff_disp');
+var staffListRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_list'));
+var staffAddRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_add'));
+var staffAddCheckRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_add_check'));
+var staffAddDoneRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_add_done'));
+var staffEditRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_edit'));
+var staffEditCheckRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_edit_check'));
+var staffEditDoneRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_edit_done'));
+var staffBranchRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_branch'));
+var staffNgRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_ng'));
+var staffDeleteRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_delete'));
+var staffDeleteDoneRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_delete_done'));
+var staffDisplayRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_disp'));
 
 var app = express();
 

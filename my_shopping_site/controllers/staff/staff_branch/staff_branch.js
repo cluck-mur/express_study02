@@ -1,5 +1,5 @@
 'use strict'
-const db = require("../../models");
+const db = require("../../../models");
 
 module.exports = new class StaffBranchController {
     /**

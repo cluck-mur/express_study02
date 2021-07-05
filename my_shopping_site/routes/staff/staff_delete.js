@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var staffDeleteController = require('../controllers/staff_delete/staff_delete');
+var staffDeleteController = require('../../controllers/staff/staff_delete/staff_delete');
 
 /**
  * GET home page.

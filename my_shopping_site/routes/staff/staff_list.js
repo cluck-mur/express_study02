@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var staffListController = require('../controllers/staff_list/staff_list');
+var staffListController = require('../../controllers/staff/staff_list/staff_list');
 
 /**
  * POST home page.

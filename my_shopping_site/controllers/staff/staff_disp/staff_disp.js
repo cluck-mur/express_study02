@@ -1,5 +1,5 @@
 'use strict'
-const db = require("../../models");
+const db = require("../../../models");
 const StaffConst = require('../common/staff_const');
 
 module.exports = new class StaffDispController {

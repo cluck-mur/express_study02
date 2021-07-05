@@ -1,8 +1,8 @@
 'use strict'
-const db = require("../../models");
+const db = require("../../../models");
 const StaffConst = require('../common/staff_const');
 
-module.exports = new class StaffDeleteController {
+module.exports = new class StaffEditController {
     /**
      * constructor
      * コンストラクタ
@@ -16,7 +16,7 @@ module.exports = new class StaffDeleteController {
      * @param {*} res 
      * @param {*} next 
      */
-    staffDelete(req, res, next) {
+    staffEdit(req, res, next) {
         let staffCode = req.body.staffcode;
 
         //--
@@ -30,7 +30,7 @@ module.exports = new class StaffDeleteController {
         }).then((staffs) => {
             if (staffs && staffs.length > 0) {
                 let staffData = staffs[0];
-                res.render(StaffConst.buildViewPath('staff_delete'), { staffData: staffData });
+                res.render(StaffConst.buildViewPath('staff_edit'), { staffData: staffData });
             } else {
                 res.send('指定されたスタッフは見つかりませんでした。');
             }
