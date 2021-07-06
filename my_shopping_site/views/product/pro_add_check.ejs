@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>ろくまる農園　商品追加　チェック</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <% if (productNameIsError) { %>
+    <%- productNameErrorMessage %><br />
+  <% } else { %>
+    商品名: <%- productName %><br />
+  <% } %>
+
+  <% if (productPriceIsError) { %>
+    <%- productPriceErrorMessage %><br />
+  <% } %>
+
+  <% if (productNameIsError || productPriceIsError) { %>
+    <form>
+      <input type='button' onclick='history.back()' value='戻る'>
+    </form>
+  <% } else { %>
+    <br />
+    この商品を登録します。<br />
+    <form method='post' action='pro_add_done'>
+      <input type='hidden' name='name' value='<%- productName %>'>
+      <input type='hidden' name='price' value='<%- productPrice %>'>
+      <br />
+      <input type='button' onclick='history.back()' value='戻る'>
+      <input type='submit' value='OK'>
+    </form>
+  <% } %>
+</body>
+
+</html>

@@ -64,9 +64,6 @@ module.exports = class StaffAddCheckData extends SuperStaffData {
     set staffPassErrorMessage(message) {
         this.#staffPassErrorMessage = message;
     }
-    get md5Pass() {
-        return super.md5Pass;
-    }
 
     /**
      * 

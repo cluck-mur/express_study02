@@ -4,9 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var StaffConst = require('./routes/staff/staff_const');
+var ProductConst = require('./routes/product/pro_const');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+// staff 系
 var staffListRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_list'));
 var staffAddRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_add'));
 var staffAddCheckRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_add_check'));
@@ -19,6 +21,10 @@ var staffNgRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_ng
 var staffDeleteRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_delete'));
 var staffDeleteDoneRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_delete_done'));
 var staffDisplayRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_disp'));
+// product 系
+var productAddRouter = require('./' + ProductConst.buildRoutePathForRequire('pro_add'));
+var productAddCheckRouter = require('./' + ProductConst.buildRoutePathForRequire('pro_add_check'));
+var productAddDoneRouter = require('./' + ProductConst.buildRoutePathForRequire('pro_add_done'));
 
 var app = express();
 
@@ -34,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+// staff 系
 app.use('/staff/staff_list', staffListRouter);
 app.use('/staff/staff_add', staffAddRouter);
 app.use('/staff/staff_add_check', staffAddCheckRouter);
@@ -46,6 +53,10 @@ app.use('/staff/staff_ng', staffNgRouter);
 app.use('/staff/staff_delete', staffDeleteRouter);
 app.use('/staff/staff_delete_done', staffDeleteDoneRouter);
 app.use('/staff/staff_disp', staffDisplayRouter);
+// product 系
+app.use('/product/pro_add', productAddRouter);
+app.use('/product/pro_add_check', productAddCheckRouter);
+app.use('/product/pro_add_done', productAddDoneRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

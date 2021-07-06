@@ -19,43 +19,6 @@ module.exports = class StaffEditCheckData extends StaffAddCheckData {
     get staffCode() {
         return this.#staffCode;
     }
-    get staffName() {
-        return super.staffName;
-    }
-    get staffPass() {
-        return super.staffPass;
-    }
-    get staffPass2() {
-        return super.staffPass2
-    }
-
-    get staffNameIsError() {
-        return super.staffNameIsError
-    }
-    set staffNameIsError(errorFlg) {
-        super.staffNameIsError = errorFlg;
-    }
-    get staffNameErrorMessage() {
-        return super.staffNameErrorMessage;
-    }
-    set staffNameErrorMessage(message) {
-        super.staffNameErrorMessage = message;
-    }
-    get staffPassIsError() {
-        return super.staffPassIsError;
-    }
-    set staffPassIsError(errorFlg) {
-        super.staffPassIsError = errorFlg;
-    }
-    get staffPassErrorMessage() {
-        return super.staffPassErrorMessage;
-    }
-    set staffPassErrorMessage(message) {
-        super.staffPassErrorMessage = message;
-    }
-    get md5Pass() {
-        return super.md5Pass;
-    }
 
     /**
      * 
