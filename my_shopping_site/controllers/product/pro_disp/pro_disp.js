@@ -23,16 +23,17 @@ module.exports = new class ProductDispController {
         // データベースから取得
         //--
         db.mst_product.findAll({
-            attributes: ['code', 'name', 'price'],
+            attributes: ['code', 'name', 'price', 'gazou'],
             where: {
                 code: productCode
             }
         }).then((products) => {
             if (products && products.length > 0) {
                 let productData = products[0];
+                console.log(productData.gazou);
                 res.render(ProductConst.buildViewPath('pro_disp'), { productData: productData });
             } else {
-                res.send('指定されたスタッフは見つかりませんでした。');
+                res.send('指定された商品は見つかりませんでした。');
             }
         }).catch((e) => {
             // console.log(e);

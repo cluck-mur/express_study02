@@ -15,6 +15,9 @@
   <%- productData.name %><br />
   価格<br />
   <%- productData.price %> 円<br />
+  <% if (productData.gazou && productData.gazou.length > 0) { %>
+    <img src="<%- '/images/' + productData.gazou %>">
+  <% } %>
   <br />
   <input type="button" onclick="history.back()" value="戻る">
 </body>

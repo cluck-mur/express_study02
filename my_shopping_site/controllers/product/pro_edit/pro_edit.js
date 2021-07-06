@@ -23,7 +23,7 @@ module.exports = new class ProductEditController {
         // データベースから取得
         //--
         db.mst_product.findAll({
-            attributes: ['code', 'name', 'price'],
+            attributes: ['code', 'name', 'price', 'gazou'],
             where: {
                 code: productCode
             }
@@ -32,7 +32,7 @@ module.exports = new class ProductEditController {
                 let productData = products[0];
                 res.render(ProductConst.buildViewPath('pro_edit'), { productData: productData });
             } else {
-                res.send('指定されたスタッフは見つかりませんでした。');
+                res.send('指定された商品は見つかりませんでした。');
             }
         }).catch((e) => {
             // console.log(e);

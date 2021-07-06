@@ -19,18 +19,21 @@ module.exports = new class ProductAddCheckController{
      */
     productAddCheck(req, res, next) {
         console.log(req.body);
-        let staffName = req.body.name;
+        console.log(req.file);
+        let productName = req.body.name;
         let productPrice = req.body.price;
-
-        staffName = htmlspecialchars(staffName);
+        let imageName = req.file.originalname;
+ 
+        productName = htmlspecialchars(productName);
         productPrice = htmlspecialchars(productPrice);
+        imageName = htmlspecialchars(imageName);
 
-        let productAddCheckData = new ProductAddCheckData(staffName, productPrice);
+        let productAddCheckData = new ProductAddCheckData(productName, productPrice, imageName);
 
         // 商品名を確認
-        if (!staffName | staffName.length < 1) {
-            productAddCheckData.staffNameIsError = true;
-            productAddCheckData.staffNameErrorMessage = '商品名が入力されていません';
+        if (!productName | productName.length < 1) {
+            productAddCheckData.productNameIsError = true;
+            productAddCheckData.productNameErrorMessage = '商品名が入力されていません';
         } else {
             // 処理なし
         }

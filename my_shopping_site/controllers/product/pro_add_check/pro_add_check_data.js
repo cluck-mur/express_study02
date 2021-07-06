@@ -5,6 +5,7 @@ const SuperProductData = require('../common/super_pro_data');
 module.exports = class ProductAddCheckData extends SuperProductData {
     #productName = null;
     #productPrice = null;
+    #imageName = null;
 
     #productNameIsError = false;
     #productNameErrorMessage = null;
@@ -14,11 +15,12 @@ module.exports = class ProductAddCheckData extends SuperProductData {
     /**
      * コンストラクター
      */
-    constructor(productName, productPrice) {
+    constructor(productName, productPrice, imageName) {
         super();
 
         this.#productName = productName;
         this.#productPrice = productPrice;
+        this.#imageName = imageName;
 
         this.#productNameIsError = false;
         this.#productNameErrorMessage = null;
@@ -31,6 +33,9 @@ module.exports = class ProductAddCheckData extends SuperProductData {
     }
     get productPrice() {
         return this.#productPrice;
+    }
+    get imageName() {
+        return this.#imageName;
     }
 
     get productNameIsError() {
@@ -74,6 +79,7 @@ module.exports = class ProductAddCheckData extends SuperProductData {
         return {
             productName: this.productName,
             productPrice: this.productPrice,
+            imageName: this.imageName,
             productNameIsError: this.productNameIsError,
             productNameErrorMessage: this.productNameErrorMessage,
             productPriceIsError: this.productPriceIsError,
