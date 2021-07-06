@@ -10,21 +10,27 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 // staff 系
 var staffListRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_list'));
+var staffBranchRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_branch'));
+var staffNgRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_ng'));
 var staffAddRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_add'));
 var staffAddCheckRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_add_check'));
 var staffAddDoneRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_add_done'));
 var staffEditRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_edit'));
 var staffEditCheckRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_edit_check'));
 var staffEditDoneRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_edit_done'));
-var staffBranchRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_branch'));
-var staffNgRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_ng'));
 var staffDeleteRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_delete'));
 var staffDeleteDoneRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_delete_done'));
 var staffDisplayRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_disp'));
 // product 系
+var productListRouter = require('./' + ProductConst.buildRoutePathForRequire('pro_list'));
+var productBranchRouter = require('./' + ProductConst.buildRoutePathForRequire('pro_branch'));
+var productNgRouter = require('./' + ProductConst.buildRoutePathForRequire('pro_ng'));
 var productAddRouter = require('./' + ProductConst.buildRoutePathForRequire('pro_add'));
 var productAddCheckRouter = require('./' + ProductConst.buildRoutePathForRequire('pro_add_check'));
 var productAddDoneRouter = require('./' + ProductConst.buildRoutePathForRequire('pro_add_done'));
+var productDispRouter = require('./' + ProductConst.buildRoutePathForRequire('pro_disp'));
+var productEditRouter = require('./' + ProductConst.buildRoutePathForRequire('pro_edit'));
+var productEditCheckRouter = require('./' + ProductConst.buildRoutePathForRequire('pro_edit_check'));
 
 var app = express();
 
@@ -54,9 +60,15 @@ app.use('/staff/staff_delete', staffDeleteRouter);
 app.use('/staff/staff_delete_done', staffDeleteDoneRouter);
 app.use('/staff/staff_disp', staffDisplayRouter);
 // product 系
+app.use('/product/pro_list', productListRouter);
+app.use('/product/pro_branch', productBranchRouter);
+app.use('/product/pro_ng', productNgRouter);
 app.use('/product/pro_add', productAddRouter);
 app.use('/product/pro_add_check', productAddCheckRouter);
 app.use('/product/pro_add_done', productAddDoneRouter);
+app.use('/product/pro_disp', productDispRouter);
+app.use('/product/pro_edit', productEditRouter);
+app.use('/product/pro_edit_check', productEditCheckRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

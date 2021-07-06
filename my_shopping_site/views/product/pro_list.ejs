@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>ろくまる農園　商品一覧</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  商品一覧<br /><br />
+  <form method="post" action="pro_branch">
+    <% for (let i=0; i < productList.length; i++ ) { %>
+      <input type="radio" name="procode" value="<%= productList[i].code %>">
+      <%- productList[i].name %> --- <%- productList[i].price %> 円
+      <br />
+    <% } %>
+    <br />
+    <input type="submit" name="disp" value="参照">
+    <input type="submit" name="add" value="追加">
+    <input type="submit" name="edit" value="修正">
+    <input type="submit" name="delete" value="削除">
+  </form>
+</body>
+
+</html>
