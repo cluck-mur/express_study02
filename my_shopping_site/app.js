@@ -3,11 +3,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var StaffLoginConst = require('./routes/staff_login/staff_login_const');
 var StaffConst = require('./routes/staff/staff_const');
 var ProductConst = require('./routes/product/pro_const');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+// staff_login 系
+var staffLoginRouter = require('./' + StaffLoginConst.buildRoutePathForRequire('staff_login'));
+var staffLoginCheckRouter = require('./' + StaffLoginConst.buildRoutePathForRequire('staff_login_check'));
+var staffTopRouter = require('./' + StaffLoginConst.buildRoutePathForRequire('staff_top'));
 // staff 系
 var staffListRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_list'));
 var staffBranchRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_branch'));
@@ -49,6 +54,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+// staff_top 系
+app.use('/staff_login/staff_login', staffLoginRouter);
+app.use('/staff_login/staff_login_check', staffLoginCheckRouter);
+app.use('/staff_login/staff_top', staffTopRouter);
 // staff 系
 app.use('/staff/staff_list', staffListRouter);
 app.use('/staff/staff_add', staffAddRouter);

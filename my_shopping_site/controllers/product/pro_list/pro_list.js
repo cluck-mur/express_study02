@@ -1,6 +1,7 @@
 'use strict';
 const db = require("../../../models");
 const htmlspecialchars = require('htmlspecialchars');
+// const ProductConst = require('../common/pro_const');
 const ProductConst = require('../common/pro_const');
 
 module.exports = new class ProductListController {
