@@ -1,5 +1,8 @@
 'use strict'
 const ProductConst = require('../common/pro_const');
+const SuperProductData = require('../common/super_pro_data');
+const ControllerConst = require('../../common/controller_const');
+const sessionRegerateId = require('../../common/session_regerate_id');
 
 module.exports = new class StaffAddController{
     /**

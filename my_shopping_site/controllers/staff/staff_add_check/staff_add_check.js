@@ -2,6 +2,8 @@
 const htmlspecialchars = require('htmlspecialchars');
 const StaffAddCheckData = require('./staff_add_check_data');
 const StaffConst = require('../common/staff_const');
+const ControllerConst = require('../../common/controller_const');
+const sessionRegerateId = require('../../common/session_regerate_id');
 
 module.exports = new class StaffAddCheckController{
     /**

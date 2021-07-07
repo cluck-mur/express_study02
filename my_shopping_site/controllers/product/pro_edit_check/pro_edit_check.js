@@ -2,6 +2,8 @@
 const htmlspecialchars = require('htmlspecialchars');
 const ProductEditCheckData = require('./pro_edit_check_data');
 const ProductConst = require('../common/pro_const');
+const ControllerConst = require('../../common/controller_const');
+const sessionRegerateId = require('../../common/session_regerate_id');
 
 module.exports = new class ProductEditCheckController {
     /**

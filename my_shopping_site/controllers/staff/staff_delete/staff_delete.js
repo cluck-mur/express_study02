@@ -1,6 +1,9 @@
 'use strict'
 const db = require("../../../models");
 const StaffConst = require('../common/staff_const');
+const SuperStaffData = require('../common/super_staff_data');
+const ControllerConst = require('../../common/controller_const');
+const sessionRegerateId = require('../../common/session_regerate_id');
 
 module.exports = new class StaffDeleteController {
     /**
