@@ -7,27 +7,31 @@
 </head>
 
 <body>
+  <% if (sessionLogin) { %>
+    <%- sessionStaffName %> さんログイン中<br />
+    <br />
+  <% } %>
   商品修正<br />
   <br />
   商品コード <br />
   <%- productData.code %><br />
+  <br />
+  <form method="post" action="pro_edit_check" enctype="multipart/form-data">
+    <input type="hidden" name="code" value="<%- productData.code %>">
+    <input type="hidden" name="gazou_name_old" value="<%- productData.gazou %>">
+    商品名<br />
+    <input type="text" name="name" style="width:200px" value="<%- productData.name %>"><br />
+    価格<br />
+    <input type="text" name="price" style="width:50px" value="<%- productData.price %>"><br />
+    <% if (productData.gazou && productData.gazou.length > 0) { %>
+      <img src="<%- '/images/' + productData.gazou %>"><br />
+    <% } %>
+    画像を選んでください。<br />
+    <input type="file" name="gazou" style="width:400px"><br />
     <br />
-    <form method="post" action="pro_edit_check" enctype="multipart/form-data">
-      <input type="hidden" name="code" value="<%- productData.code %>">
-      <input type="hidden" name="gazou_name_old" value="<%- productData.gazou %>">
-      商品名<br />
-      <input type="text" name="name" style="width:200px" value="<%- productData.name %>"><br />
-      価格<br />
-      <input type="text" name="price" style="width:50px" value="<%- productData.price %>"><br />
-      <% if (productData.gazou && productData.gazou.length > 0) { %>
-        <img src="<%- '/images/' + productData.gazou %>"><br />
-      <% } %>
-      画像を選んでください。<br />
-      <input type="file" name="gazou" style="width:400px"><br />
-      <br />
-      <input type="button" onclick="history.back()" value="戻る">
-      <input type="submit" value="OK">
-    </form>
+    <input type="button" onclick="history.back()" value="戻る">
+    <input type="submit" value="OK">
+  </form>
 </body>
 
 </html>

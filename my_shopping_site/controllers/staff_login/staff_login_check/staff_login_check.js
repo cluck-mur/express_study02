@@ -38,6 +38,12 @@ module.exports = new class StaffLoginCheckController {
         }).then((staffs) => {
             if (staffs && staffs.length > 0) {
                 staffLoginCheckData.isLoginOk = true;
+
+                // セッションに代入
+                req.session.login = true;
+                req.session.staff_code = staffCode;
+                req.session.staff_name = staffs[0].name;
+                
                 res.redirect('staff_top');
             } else {
                 staffLoginCheckData.isLoginOk = false;

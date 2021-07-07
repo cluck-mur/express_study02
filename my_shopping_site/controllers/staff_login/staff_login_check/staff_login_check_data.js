@@ -1,8 +1,8 @@
 'use strict';
 const crypto = require('crypto');
-const SuperStaffData = require('../common/super_staff_login_data');
+const SuperStaffLoginData = require('../common/super_staff_login_data');
 
-module.exports = class StaffLoginCheckData extends SuperStaffData {
+module.exports = class StaffLoginCheckData extends SuperStaffLoginData {
     #staffCode = null;
     #staffPass = null;
 

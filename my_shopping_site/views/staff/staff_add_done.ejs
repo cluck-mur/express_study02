@@ -7,8 +7,12 @@
 </head>
 
 <body>
-    <%= name %> さんを追加しました。<br />
-    <a href="staff_list">戻る</a>
+  <% if (sessionLogin) { %>
+    <%- sessionStaffName %> さんログイン中<br />
+    <br />
+  <% } %>
+  <%= name %> さんを追加しました。<br />
+  <a href="staff_list">戻る</a>
 </body>
 
 </html>

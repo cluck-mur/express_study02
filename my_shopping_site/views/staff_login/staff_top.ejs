@@ -7,6 +7,10 @@
 </head>
 
 <body>
+  <% if (sessionLogin) { %>
+    <%- sessionStaffName %> さんログイン中<br />
+    <br />
+  <% } %>
   ショップ管理<br />
   <br />
   <a href="../staff/staff_list">スタッフ管理</a><br />

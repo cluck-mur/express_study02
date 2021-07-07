@@ -7,9 +7,13 @@
 </head>
 
 <body>
-    削除しました。<br />
+  <% if (sessionLogin) { %>
+    <%- sessionStaffName %> さんログイン中<br />
     <br />
-    <a href="pro_list">戻る</a>
+  <% } %>
+  削除しました。<br />
+  <br />
+  <a href="pro_list">戻る</a>
 </body>
 
 </html>

@@ -9,6 +9,10 @@
 <body>
   スタッフ削除<br />
   <br />
+  <% if (sessionLogin) { %>
+    <%- sessionStaffName %> さんログイン中<br />
+    <br />
+  <% } %>
   スタッフコード <br />
   <%- staffData.code %><br />
   スタッフ名<br />

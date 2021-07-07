@@ -7,6 +7,10 @@
 </head>
 
 <body>
+  <% if (sessionLogin) { %>
+    <%- sessionStaffName %> さんログイン中<br />
+    <br />
+  <% } %>
   商品が選択されていません。<br />
   <a href="pro_list">戻る</a>
 </body>

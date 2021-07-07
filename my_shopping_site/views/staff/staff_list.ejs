@@ -7,6 +7,10 @@
 </head>
 
 <body>
+  <% if (sessionLogin) { %>
+    <%- sessionStaffName %> さんログイン中<br />
+    <br />
+  <% } %>
   スタッフ一覧<br /><br />
   <form method="post" action="staff_branch">
     <% for (let i=0; i < staffList.length; i++ ) { %>

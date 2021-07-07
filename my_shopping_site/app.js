@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var logger = require('morgan');
 var StaffLoginConst = require('./routes/staff_login/staff_login_const');
 var StaffConst = require('./routes/staff/staff_const');
@@ -13,6 +14,7 @@ var usersRouter = require('./routes/users');
 var staffLoginRouter = require('./' + StaffLoginConst.buildRoutePathForRequire('staff_login'));
 var staffLoginCheckRouter = require('./' + StaffLoginConst.buildRoutePathForRequire('staff_login_check'));
 var staffTopRouter = require('./' + StaffLoginConst.buildRoutePathForRequire('staff_top'));
+var staffNologinNgRouter = require('./' + StaffLoginConst.buildRoutePathForRequire('staff_nologin_ng'));
 // staff 系
 var staffListRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_list'));
 var staffBranchRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_branch'));
@@ -51,6 +53,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    secure: false,
+    maxage: 1000 * 60 * 30
+  }
+}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -58,6 +70,7 @@ app.use('/users', usersRouter);
 app.use('/staff_login/staff_login', staffLoginRouter);
 app.use('/staff_login/staff_login_check', staffLoginCheckRouter);
 app.use('/staff_login/staff_top', staffTopRouter);
+app.use('/staff_login/staff_nologin_ng', staffNologinNgRouter);
 // staff 系
 app.use('/staff/staff_list', staffListRouter);
 app.use('/staff/staff_add', staffAddRouter);
