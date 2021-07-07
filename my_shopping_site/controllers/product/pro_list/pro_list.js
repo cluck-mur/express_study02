@@ -21,17 +21,24 @@ module.exports = new class ProductListController {
      * @param {*} next 
      */
     productList(req, res, next) {
-        //--
-        // データベースから取得
-        //--
-        db.mst_product.findAll({
-            attributes: ['code', 'name', 'price']
-        }).then((products) => {
-            res.render(ProductConst.buildViewPath('pro_list'), { productList: products });
-        }).catch((e) => {
-            // console.log(e);
-            // next();
-            res.send('ただいま障害により大変ご迷惑をお掛けしております。');
-        });
+        // セッションIDを再生成
+        sessionRegerateId(req, res);
+        // セッションを確認
+        if (req.session.login) {
+            //--
+            // データベースから取得
+            //--
+            db.mst_product.findAll({
+                attributes: ['code', 'name', 'price']
+            }).then((products) => {
+                res.render(ProductConst.buildViewPath('pro_list'), { productList: products });
+            }).catch((e) => {
+                // console.log(e);
+                // next();
+                res.send('ただいま障害により大変ご迷惑をお掛けしております。');
+            });
+        } else {
+
+        }
     }
 }

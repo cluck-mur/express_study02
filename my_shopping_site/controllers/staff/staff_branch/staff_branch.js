@@ -19,28 +19,35 @@ module.exports = new class StaffBranchController {
      * @param {*} next 
      */
     staffBranch(req, res, next) {
-        let requestedFunction = req.body.name;
+        // セッションIDを再生成
+        sessionRegerateId(req, res);
+        // セッションを確認
+        if (req.session.login) {
+            let requestedFunction = req.body.name;
 
-        if (req.body.disp) {
-            if (!req.body.staffcode) {
-                res.redirect('staff_ng');
-            } else {
-                res.redirect(307, 'staff_disp');
+            if (req.body.disp) {
+                if (!req.body.staffcode) {
+                    res.redirect('staff_ng');
+                } else {
+                    res.redirect(307, 'staff_disp');
+                }
+            } else if (req.body.add) {
+                res.redirect('staff_add');
+            } else if (req.body.edit) {
+                if (!req.body.staffcode) {
+                    res.redirect('staff_ng');
+                } else {
+                    res.redirect(307, 'staff_edit');
+                }
+            } else if (req.body.delete) {
+                if (!req.body.staffcode) {
+                    res.redirect('staff_ng');
+                } else {
+                    res.redirect(307, 'staff_delete');
+                }
             }
-        } else if (req.body.add) {
-            res.redirect('staff_add');
-        } else if (req.body.edit) {
-            if (!req.body.staffcode) {
-                res.redirect('staff_ng');
-            } else {
-                res.redirect(307, 'staff_edit');
-            }
-        } else if (req.body.delete) {
-            if (!req.body.staffcode) {
-                res.redirect('staff_ng');
-            } else {
-                res.redirect(307, 'staff_delete');
-            }
+        } else {
+
         }
     }
 }

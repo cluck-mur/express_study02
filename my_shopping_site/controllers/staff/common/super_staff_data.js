@@ -9,4 +9,23 @@ module.exports = class SuperStaffData extends SuperViewIfData {
      constructor() {
         super();
     }
+
+    /**
+     * 
+     */
+    get dataObject() {
+        // console.log(this.#makeObject());
+        return this.#makeObject();
+    }
+
+    /**
+     * 
+     * @returns 
+     */
+    #makeObject() {
+        return {
+            sessionLogin: this.sessionLogin,
+            sessionStaffName: this.sessionStaffName,
+        };
+    }
 };

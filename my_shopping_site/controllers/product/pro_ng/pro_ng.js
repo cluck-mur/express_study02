@@ -21,6 +21,13 @@ module.exports = new class ProductNgController {
      * @param {*} next 
      */
     productNg(req, res, next) {
-        res.render(ProductConst.buildViewPath('pro_ng'), {});
+        // セッションIDを再生成
+        sessionRegerateId(req, res);
+        // セッションを確認
+        if (req.session.login) {
+            res.render(ProductConst.buildViewPath('pro_ng'), {});
+        } else {
+
+        }
     }
 }

@@ -21,26 +21,32 @@ module.exports = new class ProductAddDoneController {
      * @param {*} next 
      */
     productAddDone(req, res, next) {
-        console.log(req.body);
-        let productName = req.body.name;
-        let productPrice = req.body.price;
-        let imageName = req.body.gazou_name;
+        // セッションIDを再生成
+        sessionRegerateId(req, res);
+        // セッションを確認
+        if (req.session.login) {
+            let productName = req.body.name;
+            let productPrice = req.body.price;
+            let imageName = req.body.gazou_name;
 
-        productName = htmlspecialchars(productName);
-        productPrice = htmlspecialchars(productPrice);
-        imageName = htmlspecialchars(imageName);
+            productName = htmlspecialchars(productName);
+            productPrice = htmlspecialchars(productPrice);
+            imageName = htmlspecialchars(imageName);
 
-        //--
-        // データベースに保存
-        //--
-        db.mst_product.create({ name: productName, price: productPrice, gazou: imageName })
-            .then(() => {
-                res.render(ProductConst.buildViewPath('pro_add_done'), { name: productName });
-            })
-            .catch((e) => {
-                // console.log(e);
-                // next();
-                res.send('ただいま障害により大変ご迷惑をお掛けしております。');
-            });
+            //--
+            // データベースに保存
+            //--
+            db.mst_product.create({ name: productName, price: productPrice, gazou: imageName })
+                .then(() => {
+                    res.render(ProductConst.buildViewPath('pro_add_done'), { name: productName });
+                })
+                .catch((e) => {
+                    // console.log(e);
+                    // next();
+                    res.send('ただいま障害により大変ご迷惑をお掛けしております。');
+                });
+        } else {
+
+        }
     }
 }

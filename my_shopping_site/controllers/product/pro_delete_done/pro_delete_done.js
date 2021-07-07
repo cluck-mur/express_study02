@@ -23,52 +23,58 @@ module.exports = new class ProductDeleteDoneController {
      * @param {*} next 
      */
     productDeleteDone(req, res, next) {
-        console.log(req.body);
-        let productCode = req.body.code;
-        let productName = req.body.name;
-        let productPrice = req.body.price;
-        let imageName = req.body.gazou_name;
+        // セッションIDを再生成
+        sessionRegerateId(req, res);
+        // セッションを確認
+        if (req.session.login) {
+            let productCode = req.body.code;
+            let productName = req.body.name;
+            let productPrice = req.body.price;
+            let imageName = req.body.gazou_name;
 
-        productCode = htmlspecialchars(productCode);
-        productName = htmlspecialchars(productName);
-        productPrice = htmlspecialchars(productPrice);
-        imageName = htmlspecialchars(imageName);
+            productCode = htmlspecialchars(productCode);
+            productName = htmlspecialchars(productName);
+            productPrice = htmlspecialchars(productPrice);
+            imageName = htmlspecialchars(imageName);
 
-        //--
-        // データベースに保存
-        //--
-        db.mst_product.destroy({
-            where: { code: productCode }
-        }).then(() => {
-            // 古い画像を参照する商品が0だったらストレージから消す
-            if (imageName && imageName.length > 0) {
-                db.mst_product.count({
-                    where: {
-                        gazou: imageName
-                    }
-                }).then((dataCount) => {
-                    if (!(dataCount > 0)) {
-                        // let currentPath = __dirname;
-                        let currentPath = process.cwd();
-                        let imagePath = path.join(currentPath, 'public', 'images', imageName);
-
-                        // ファイルの存在チェック
-                        let isExisting = fs.existsSync(imagePath);
-                        if (isExisting) {
-                            // ストレージから削除
-                            fs.unlinkSync(imagePath)
+            //--
+            // データベースに保存
+            //--
+            db.mst_product.destroy({
+                where: { code: productCode }
+            }).then(() => {
+                // 古い画像を参照する商品が0だったらストレージから消す
+                if (imageName && imageName.length > 0) {
+                    db.mst_product.count({
+                        where: {
+                            gazou: imageName
                         }
-                    }
-                }).catch((e) => {
-                    res.send('ただいま障害により大変ご迷惑をお掛けしております。(画像削除)');
-                });
-            }
+                    }).then((dataCount) => {
+                        if (!(dataCount > 0)) {
+                            // let currentPath = __dirname;
+                            let currentPath = process.cwd();
+                            let imagePath = path.join(currentPath, 'public', 'images', imageName);
 
-            res.render(ProductConst.buildViewPath('pro_delete_done'), {});
-        }).catch((e) => {
-            // console.log(e);
-            // next();
-            res.send('ただいま障害により大変ご迷惑をお掛けしております。');
-        });
+                            // ファイルの存在チェック
+                            let isExisting = fs.existsSync(imagePath);
+                            if (isExisting) {
+                                // ストレージから削除
+                                fs.unlinkSync(imagePath)
+                            }
+                        }
+                    }).catch((e) => {
+                        res.send('ただいま障害により大変ご迷惑をお掛けしております。(画像削除)');
+                    });
+                }
+
+                res.render(ProductConst.buildViewPath('pro_delete_done'), {});
+            }).catch((e) => {
+                // console.log(e);
+                // next();
+                res.send('ただいま障害により大変ご迷惑をお掛けしております。');
+            });
+        } else {
+
+        }
     }
 }

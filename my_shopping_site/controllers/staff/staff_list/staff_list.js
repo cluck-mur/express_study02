@@ -21,19 +21,26 @@ module.exports = new class StaffListController {
      * @param {*} next 
      */
     staffList(req, res, next) {
-        //--
-        // データベースから取得
-        //--
-        db.mst_staff.findAll({
-            attributes: ['code', 'name']
-          })
-            .then((staffs) => {
-                res.render(StaffConst.buildViewPath('staff_list'), { staffList: staffs });
+        // セッションIDを再生成
+        sessionRegerateId(req, res);
+        // セッションを確認
+        if (req.session.login) {
+            //--
+            // データベースから取得
+            //--
+            db.mst_staff.findAll({
+                attributes: ['code', 'name']
             })
-            .catch((e) => {
-                // console.log(e);
-                // next();
-                res.send('ただいま障害により大変ご迷惑をお掛けしております。');
-            });
+                .then((staffs) => {
+                    res.render(StaffConst.buildViewPath('staff_list'), { staffList: staffs });
+                })
+                .catch((e) => {
+                    // console.log(e);
+                    // next();
+                    res.send('ただいま障害により大変ご迷惑をお掛けしております。');
+                });
+        } else {
+
+        }
     }
 }

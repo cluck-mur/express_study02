@@ -20,46 +20,52 @@ module.exports = new class ProductEditCheckController {
      * @param {*} next 
      */
     productEditCheck(req, res, next) {
-        console.log(req.body);
-        let productCode = req.body.code;
-        let productName = req.body.name;
-        let productPrice = req.body.price;
-        let imageName = null;
-        if (req.file && req.file.originalname.length) {
-            imageName = req.file.originalname;
-        }
-        let imageNameOld = req.body.gazou_name_old;
+        // セッションIDを再生成
+        sessionRegerateId(req, res);
+        // セッションを確認
+        if (req.session.login) {
+            let productCode = req.body.code;
+            let productName = req.body.name;
+            let productPrice = req.body.price;
+            let imageName = null;
+            if (req.file && req.file.originalname.length) {
+                imageName = req.file.originalname;
+            }
+            let imageNameOld = req.body.gazou_name_old;
 
-        productCode = htmlspecialchars(productCode);
-        productName = htmlspecialchars(productName);
-        productPrice = htmlspecialchars(productPrice);
-        imageName = htmlspecialchars(imageName);
-        imageNameOld = htmlspecialchars(imageNameOld);
+            productCode = htmlspecialchars(productCode);
+            productName = htmlspecialchars(productName);
+            productPrice = htmlspecialchars(productPrice);
+            imageName = htmlspecialchars(imageName);
+            imageNameOld = htmlspecialchars(imageNameOld);
 
-        let productEditCheckData = new ProductEditCheckData(productCode, productName, productPrice, imageName, imageNameOld);
+            let productEditCheckData = new ProductEditCheckData(productCode, productName, productPrice, imageName, imageNameOld);
 
-        // 商品名を確認
-        if (!productName | productName.length < 1) {
-            productEditCheckData.productNameIsError = true;
-            productEditCheckData.productNameErrorMessage = '商品名が入力されていません';
+            // 商品名を確認
+            if (!productName | productName.length < 1) {
+                productEditCheckData.productNameIsError = true;
+                productEditCheckData.productNameErrorMessage = '商品名が入力されていません';
+            } else {
+                // 処理なし
+            }
+
+            // 価格を確認
+            let isPriceOk = productPrice.match('^[0-9]+$'); // 半角数字のみかチェック
+            if (!productPrice | productPrice.length < 1) {
+                productEditCheckData.productPriceIsError = true;
+                productEditCheckData.productPriceErrorMessage = '価格が入力されていません。';
+            } else if (!isPriceOk) {
+                productEditCheckData.productPriceIsError = true;
+                productEditCheckData.productPriceErrorMessage = '価格をきちんと入力してください。';
+            } else {
+                // 処理なし   
+            }
+
+            let dataObject = productEditCheckData.dataObject;
+            res.render(ProductConst.buildViewPath('pro_edit_check'), dataObject);
+            // res.send("OK");
         } else {
-            // 処理なし
-        }
 
-        // 価格を確認
-        let isPriceOk = productPrice.match('^[0-9]+$'); // 半角数字のみかチェック
-        if (!productPrice | productPrice.length < 1) {
-            productEditCheckData.productPriceIsError = true;
-            productEditCheckData.productPriceErrorMessage = '価格が入力されていません。';
-        } else if (!isPriceOk) {
-            productEditCheckData.productPriceIsError = true;
-            productEditCheckData.productPriceErrorMessage = '価格をきちんと入力してください。';
-        } else {
-            // 処理なし   
         }
-
-        let dataObject = productEditCheckData.dataObject;
-        res.render(ProductConst.buildViewPath('pro_edit_check'), dataObject);
-        // res.send("OK");
     }
 }

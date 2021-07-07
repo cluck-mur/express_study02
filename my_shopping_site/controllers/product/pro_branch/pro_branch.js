@@ -19,26 +19,33 @@ module.exports = new class ProductBranchController {
      * @param {*} next 
      */
     productBranch(req, res, next) {
-        if (req.body.disp) {
-            if (!req.body.procode) {
-                res.redirect('pro_ng');
-            } else {
-                res.redirect(307, 'pro_disp');
+        // セッションIDを再生成
+        sessionRegerateId(req, res);
+        // セッションを確認
+        if (req.session.login) {
+            if (req.body.disp) {
+                if (!req.body.procode) {
+                    res.redirect('pro_ng');
+                } else {
+                    res.redirect(307, 'pro_disp');
+                }
+            } else if (req.body.add) {
+                res.redirect('pro_add');
+            } else if (req.body.edit) {
+                if (!req.body.procode) {
+                    res.redirect('pro_ng');
+                } else {
+                    res.redirect(307, 'pro_edit');
+                }
+            } else if (req.body.delete) {
+                if (!req.body.procode) {
+                    res.redirect('pro_ng');
+                } else {
+                    res.redirect(307, 'pro_delete');
+                }
             }
-        } else if (req.body.add) {
-            res.redirect('pro_add');
-        } else if (req.body.edit) {
-            if (!req.body.procode) {
-                res.redirect('pro_ng');
-            } else {
-                res.redirect(307, 'pro_edit');
-            }
-        } else if (req.body.delete) {
-            if (!req.body.procode) {
-                res.redirect('pro_ng');
-            } else {
-                res.redirect(307, 'pro_delete');
-            }
+        } else {
+
         }
     }
 }

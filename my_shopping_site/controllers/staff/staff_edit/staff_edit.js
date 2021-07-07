@@ -20,27 +20,34 @@ module.exports = new class StaffEditController {
      * @param {*} next 
      */
     staffEdit(req, res, next) {
-        let staffCode = req.body.staffcode;
+        // セッションIDを再生成
+        sessionRegerateId(req, res);
+        // セッションを確認
+        if (req.session.login) {
+            let staffCode = req.body.staffcode;
 
-        //--
-        // データベースから取得
-        //--
-        db.mst_staff.findAll({
-            attributes: ['code', 'name'],
-            where: {
-                code: staffCode
-            }
-        }).then((staffs) => {
-            if (staffs && staffs.length > 0) {
-                let staffData = staffs[0];
-                res.render(StaffConst.buildViewPath('staff_edit'), { staffData: staffData });
-            } else {
-                res.send('指定されたスタッフは見つかりませんでした。');
-            }
-        }).catch((e) => {
-            // console.log(e);
-            // next();
-            res.send('ただいま障害により大変ご迷惑をお掛けしております。');
-        });
+            //--
+            // データベースから取得
+            //--
+            db.mst_staff.findAll({
+                attributes: ['code', 'name'],
+                where: {
+                    code: staffCode
+                }
+            }).then((staffs) => {
+                if (staffs && staffs.length > 0) {
+                    let staffData = staffs[0];
+                    res.render(StaffConst.buildViewPath('staff_edit'), { staffData: staffData });
+                } else {
+                    res.send('指定されたスタッフは見つかりませんでした。');
+                }
+            }).catch((e) => {
+                // console.log(e);
+                // next();
+                res.send('ただいま障害により大変ご迷惑をお掛けしております。');
+            });
+        } else {
+
+        }
     }
 }

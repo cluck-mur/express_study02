@@ -21,26 +21,32 @@ module.exports = new class StaffDeleteDoneController {
      * @param {*} next 
      */
     staffDeleteDone(req, res, next) {
-        console.log(req.body);
-        let staffCode = req.body.code;
-        let staffName = req.body.name;
-        let staffPass = req.body.pass;
+        // セッションIDを再生成
+        sessionRegerateId(req, res);
+        // セッションを確認
+        if (req.session.login) {
+            let staffCode = req.body.code;
+            let staffName = req.body.name;
+            let staffPass = req.body.pass;
 
-        staffCode = htmlspecialchars(staffCode);
-        staffName = htmlspecialchars(staffName);
-        staffPass = htmlspecialchars(staffPass);
+            staffCode = htmlspecialchars(staffCode);
+            staffName = htmlspecialchars(staffName);
+            staffPass = htmlspecialchars(staffPass);
 
-        //--
-        // データベースに保存
-        //--
-        db.mst_staff.destroy({
-            where: { code: staffCode }
-        }).then(() => {
-            res.render(StaffConst.buildViewPath('staff_delete_done'), {});
-        }).catch((e) => {
-            // console.log(e);
-            // next();
-            res.send('ただいま障害により大変ご迷惑をお掛けしております。');
-        });
+            //--
+            // データベースに保存
+            //--
+            db.mst_staff.destroy({
+                where: { code: staffCode }
+            }).then(() => {
+                res.render(StaffConst.buildViewPath('staff_delete_done'), {});
+            }).catch((e) => {
+                // console.log(e);
+                // next();
+                res.send('ただいま障害により大変ご迷惑をお掛けしております。');
+            });
+        } else {
+
+        }
     }
 }

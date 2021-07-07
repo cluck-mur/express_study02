@@ -21,24 +21,31 @@ module.exports = new class StaffAddDoneController {
      * @param {*} next 
      */
     staffAddDone(req, res, next) {
-        console.log(req.body);
-        let staffName = req.body.name;
-        let staffPass = req.body.pass;
+        // セッションIDを再生成
+        sessionRegerateId(req, res);
+        // セッションを確認
+        if (req.session.login) {
 
-        staffName = htmlspecialchars(staffName);
-        staffPass = htmlspecialchars(staffPass);
+            let staffName = req.body.name;
+            let staffPass = req.body.pass;
 
-        //--
-        // データベースに保存
-        //--
-        db.mst_staff.create({ name: staffName, password: staffPass })
-            .then(() => {
-                res.render(StaffConst.buildViewPath('staff_add_done'), { name: staffName });
-            })
-            .catch((e) => {
-                // console.log(e);
-                // next();
-                res.send('ただいま障害により大変ご迷惑をお掛けしております。');
-            });
+            staffName = htmlspecialchars(staffName);
+            staffPass = htmlspecialchars(staffPass);
+
+            //--
+            // データベースに保存
+            //--
+            db.mst_staff.create({ name: staffName, password: staffPass })
+                .then(() => {
+                    res.render(StaffConst.buildViewPath('staff_add_done'), { name: staffName });
+                })
+                .catch((e) => {
+                    // console.log(e);
+                    // next();
+                    res.send('ただいま障害により大変ご迷惑をお掛けしております。');
+                });
+        } else {
+
+        }
     }
 }

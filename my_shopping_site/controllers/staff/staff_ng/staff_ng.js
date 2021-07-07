@@ -21,6 +21,13 @@ module.exports = new class StaffNgController {
      * @param {*} next 
      */
     staffNg(req, res, next) {
-        res.render(StaffConst.buildViewPath('staff_ng'), {});
+        // セッションIDを再生成
+        sessionRegerateId(req, res);
+        // セッションを確認
+        if (req.session.login) {
+            res.render(StaffConst.buildViewPath('staff_ng'), {});
+        } else {
+
+        }
     }
 }
