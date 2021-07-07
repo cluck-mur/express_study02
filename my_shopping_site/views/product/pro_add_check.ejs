@@ -24,13 +24,17 @@
       <input type='button' onclick='history.back()' value='戻る'>
     </form>
   <% } else { %>
-    <img src='<%- "/images/" + imageName %>'>
+    <% if (imageName && imageName.length > 0) { %>
+      <img src='<%- "/images/" + imageName %>'>
+    <% } %>
     <br />
     上記の商品を追加します。<br />
     <form method='post' action='pro_add_done'>
       <input type='hidden' name='name' value='<%- productName %>'>
       <input type='hidden' name='price' value='<%- productPrice %>'>
+      <% if (imageName && imageName.length > 0) { %>
       <input type='hidden' name='gazou_name' value='<%- imageName %>'>
+      <% } %>
       <br />
       <input type='button' onclick='history.back()' value='戻る'>
       <input type='submit' value='OK'>

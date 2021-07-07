@@ -22,7 +22,10 @@ module.exports = new class ProductAddCheckController{
         console.log(req.file);
         let productName = req.body.name;
         let productPrice = req.body.price;
-        let imageName = req.file.originalname;
+        let imageName = null;
+        if (req.file && req.file.originalname.length) {
+            imageName = req.file.originalname;
+        }
  
         productName = htmlspecialchars(productName);
         productPrice = htmlspecialchars(productPrice);

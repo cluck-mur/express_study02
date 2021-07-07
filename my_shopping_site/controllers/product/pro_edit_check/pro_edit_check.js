@@ -3,12 +3,12 @@ const htmlspecialchars = require('htmlspecialchars');
 const ProductEditCheckData = require('./pro_edit_check_data');
 const ProductConst = require('../common/pro_const');
 
-module.exports = new class ProductEditCheckController{
+module.exports = new class ProductEditCheckController {
     /**
      * constructor
      * コンストラクタ
      */
-     constructor() {
+    constructor() {
     }
 
     /**
@@ -22,12 +22,19 @@ module.exports = new class ProductEditCheckController{
         let productCode = req.body.code;
         let productName = req.body.name;
         let productPrice = req.body.price;
+        let imageName = null;
+        if (req.file && req.file.originalname.length) {
+            imageName = req.file.originalname;
+        }
+        let imageNameOld = req.body.gazou_name_old;
 
         productCode = htmlspecialchars(productCode);
         productName = htmlspecialchars(productName);
         productPrice = htmlspecialchars(productPrice);
+        imageName = htmlspecialchars(imageName);
+        imageNameOld = htmlspecialchars(imageNameOld);
 
-        let productEditCheckData = new ProductEditCheckData(productCode, productName, productPrice);
+        let productEditCheckData = new ProductEditCheckData(productCode, productName, productPrice, imageName, imageNameOld);
 
         // 商品名を確認
         if (!productName | productName.length < 1) {
@@ -48,7 +55,7 @@ module.exports = new class ProductEditCheckController{
         } else {
             // 処理なし   
         }
-        
+
         let dataObject = productEditCheckData.dataObject;
         res.render(ProductConst.buildViewPath('pro_edit_check'), dataObject);
         // res.send("OK");

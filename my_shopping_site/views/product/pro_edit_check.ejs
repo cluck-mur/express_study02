@@ -24,12 +24,21 @@
       <input type="button" onclick="history.back()" value="戻る">
     </form>
   <% } else { %>
+    <% if (imageName && imageName.length > 0) { %>
+      <img src='<%- "/images/" + imageName %>'>
+    <% } %>
     <br />
     上記のように変更します。<br />
     <form method="post" action="pro_edit_done">
       <input type="hidden" name="code" value="<%- productCode %>">
       <input type="hidden" name="name" value="<%- productName %>">
       <input type="hidden" name="price" value="<%- productPrice %>">
+      <% if (imageName && imageName.length > 0) { %>
+        <input type="hidden" name="gazou_name" value="<%- imageName %>">
+      <% } %>
+      <% if (imageNameOld && imageNameOld.length > 0) { %>
+        <input type="hidden" name="gazou_name_old" value="<%- imageNameOld %>">
+      <% } %>
       <br />
       <input type="button" onclick="history.back()" value="戻る">
       <input type="submit" value="OK">

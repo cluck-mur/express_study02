@@ -23,14 +23,12 @@ module.exports = new class ProductListController {
         //--
         db.mst_product.findAll({
             attributes: ['code', 'name', 'price']
-          })
-            .then((products) => {
-                res.render(ProductConst.buildViewPath('pro_list'), { productList: products });
-            })
-            .catch((e) => {
-                // console.log(e);
-                // next();
-                res.send('ただいま障害により大変ご迷惑をお掛けしております。');
-            });
+        }).then((products) => {
+            res.render(ProductConst.buildViewPath('pro_list'), { productList: products });
+        }).catch((e) => {
+            // console.log(e);
+            // next();
+            res.send('ただいま障害により大変ご迷惑をお掛けしております。');
+        });
     }
 }
