@@ -2,7 +2,7 @@
 const db = require("../../../models");
 const htmlspecialchars = require('htmlspecialchars');
 const StaffConst = require('../common/staff_const');
-const SuperStaffData = require('../common/super_staff_data');
+const StaffAddDoneData = require('./staff_add_done_data');
 const ControllerConst = require('../../common/controller_const');
 const sessionRegerateId = require('../../common/session_regerate_id');
 
@@ -37,12 +37,12 @@ module.exports = new class StaffAddDoneController {
             //--
             db.mst_staff.create({ name: staffName, password: staffPass })
                 .then(() => {
-                    let superStaffData = new SuperStaffData();
+                    let staffAddDoneData = new StaffAddDoneData(staffName);
+                    staffAddDoneData.sessionLogin = true;
+                    staffAddDoneData.sessionStaffName = req.session.staff_name;
 
-                    superStaffData.sessionLogin = true;
-                    superStaffData.sessionStaffName = req.session.staff_name;
-
-                    res.render(StaffConst.buildViewPath('staff_add_done'), { name: staffName });
+                    let dataObject = staffAddDoneData.dataObject;
+                    res.render(StaffConst.buildViewPath('staff_add_done'), dataObject);
                 })
                 .catch((e) => {
                     // console.log(e);

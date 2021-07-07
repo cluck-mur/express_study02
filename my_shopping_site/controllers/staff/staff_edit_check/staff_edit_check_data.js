@@ -43,6 +43,8 @@ module.exports = class StaffEditCheckData extends StaffAddCheckData {
             staffPassIsError: this.staffPassIsError,
             staffPassErrorMessage: this.staffPassErrorMessage,
             md5Pass: this.md5Pass,
+            sessionLogin: this.sessionLogin,
+            sessionStaffName: this.sessionStaffName,
         };
     }
 }

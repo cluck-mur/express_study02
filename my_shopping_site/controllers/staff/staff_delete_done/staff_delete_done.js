@@ -40,11 +40,11 @@ module.exports = new class StaffDeleteDoneController {
                 where: { code: staffCode }
             }).then(() => {
                 let superStaffData = new SuperStaffData();
-
                 superStaffData.sessionLogin = true;
                 superStaffData.sessionStaffName = req.session.staff_name;
 
-                res.render(StaffConst.buildViewPath('staff_delete_done'), {});
+                let dataObject = superStaffData.dataObject;
+                res.render(StaffConst.buildViewPath('staff_delete_done'), dataObject);
             }).catch((e) => {
                 // console.log(e);
                 // next();

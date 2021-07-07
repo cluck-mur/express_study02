@@ -87,6 +87,8 @@ module.exports = class StaffAddCheckData extends SuperStaffData {
             staffPassIsError: this.staffPassIsError,
             staffPassErrorMessage: this.staffPassErrorMessage,
             md5Pass: this.md5Pass,
+            sessionLogin: this.sessionLogin,
+            sessionStaffName: this.sessionStaffName,
         };
     }
 }

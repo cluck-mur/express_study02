@@ -32,8 +32,6 @@ module.exports = new class StaffTopController {
 
             res.render(StaffLoginConst.buildViewPath('staff_top'), staffTopData.dataObject);
         } else {
-            staffTopData.sessionLogin = false;
-
             res.redirect(ControllerConst.STAFF_NOLOGIN_NG_PATH);
         }
     }

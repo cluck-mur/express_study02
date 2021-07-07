@@ -1,7 +1,7 @@
 'use strict'
 const db = require("../../../models");
 const StaffConst = require('../common/staff_const');
-const SuperStaffData = require('../common/super_staff_data');
+const StaffDispData = require('./staff_disp_data');
 const ControllerConst = require('../../common/controller_const');
 const sessionRegerateId = require('../../common/session_regerate_id');
 
@@ -38,12 +38,12 @@ module.exports = new class StaffDispController {
                 if (staffs && staffs.length > 0) {
                     let staffData = staffs[0];
 
-                    let superStaffData = new SuperStaffData();
+                    let staffDispData = new StaffDispData(staffData.code, staffData.name);
+                    staffDispData.sessionLogin = true;
+                    staffDispData.sessionStaffName = req.session.staff_name;
 
-                    superStaffData.sessionLogin = true;
-                    superStaffData.sessionStaffName = req.session.staff_name;
-
-                    res.render(StaffConst.buildViewPath('staff_disp'), { staffData: staffData });
+                    let dataObject = staffDispData.dataObject;
+                    res.render(StaffConst.buildViewPath('staff_disp'), dataObject);
                 } else {
                     res.send('指定されたスタッフは見つかりませんでした。');
                 }

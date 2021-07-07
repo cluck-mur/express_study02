@@ -2,7 +2,7 @@
 const db = require("../../../models");
 const htmlspecialchars = require('htmlspecialchars');
 const StaffConst = require('../common/staff_const');
-const SuperStaffData = require('../common/super_staff_data');
+const StaffListData = require('./staff_list_data');
 const ControllerConst = require('../../common/controller_const');
 const sessionRegerateId = require('../../common/session_regerate_id');
 
@@ -31,12 +31,12 @@ module.exports = new class StaffListController {
             db.mst_staff.findAll({
                 attributes: ['code', 'name']
             }).then((staffs) => {
-                let superStaffData = new SuperStaffData();
+                let staffListData = new StaffListData(staffs);
+                staffListData.sessionLogin = true;
+                staffListData.sessionStaffName = req.session.staff_name;
 
-                superStaffData.sessionLogin = true;
-                superStaffData.sessionStaffName = req.session.staff_name;
-
-                res.render(StaffConst.buildViewPath('staff_list'), { staffList: staffs });
+                let dataObject = staffListData.dataObject;
+                res.render(StaffConst.buildViewPath('staff_list'), dataObject);
             }).catch((e) => {
                 // console.log(e);
                 // next();
