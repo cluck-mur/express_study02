@@ -37,6 +37,12 @@ module.exports = new class ProductDeleteController {
             }).then((products) => {
                 if (products && products.length > 0) {
                     let productData = products[0];
+
+                    let superProductData = new SuperProductData();
+
+                    superProductData.sessionLogin = true;
+                    superProductData.sessionStaffName = req.session.staff_name;
+
                     res.render(ProductConst.buildViewPath('pro_delete'), { productData: productData });
                 } else {
                     res.send('指定された商品は見つかりませんでした。');

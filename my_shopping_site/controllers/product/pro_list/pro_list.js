@@ -31,6 +31,11 @@ module.exports = new class ProductListController {
             db.mst_product.findAll({
                 attributes: ['code', 'name', 'price']
             }).then((products) => {
+                let superProductData = new SuperProductData();
+
+                superProductData.sessionLogin = true;
+                superProductData.sessionStaffName = req.session.staff_name;
+
                 res.render(ProductConst.buildViewPath('pro_list'), { productList: products });
             }).catch((e) => {
                 // console.log(e);

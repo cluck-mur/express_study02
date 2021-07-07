@@ -37,6 +37,12 @@ module.exports = new class StaffEditController {
             }).then((staffs) => {
                 if (staffs && staffs.length > 0) {
                     let staffData = staffs[0];
+
+                    let superStaffData = new SuperStaffData();
+
+                    superStaffData.sessionLogin = true;
+                    superStaffData.sessionStaffName = req.session.staff_name;
+
                     res.render(StaffConst.buildViewPath('staff_edit'), { staffData: staffData });
                 } else {
                     res.send('指定されたスタッフは見つかりませんでした。');

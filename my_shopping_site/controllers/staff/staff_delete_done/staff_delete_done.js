@@ -39,6 +39,11 @@ module.exports = new class StaffDeleteDoneController {
             db.mst_staff.destroy({
                 where: { code: staffCode }
             }).then(() => {
+                let superStaffData = new SuperStaffData();
+
+                superStaffData.sessionLogin = true;
+                superStaffData.sessionStaffName = req.session.staff_name;
+
                 res.render(StaffConst.buildViewPath('staff_delete_done'), {});
             }).catch((e) => {
                 // console.log(e);

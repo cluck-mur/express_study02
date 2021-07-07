@@ -80,6 +80,11 @@ module.exports = new class ProductEditDoneController {
                     });
                 }
 
+                let superProductData = new SuperProductData();
+
+                superProductData.sessionLogin = true;
+                superProductData.sessionStaffName = req.session.staff_name;
+
                 res.render(ProductConst.buildViewPath('pro_edit_done'), {});
             }).catch((e) => {
                 // console.log(e);

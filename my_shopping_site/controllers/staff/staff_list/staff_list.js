@@ -30,15 +30,18 @@ module.exports = new class StaffListController {
             //--
             db.mst_staff.findAll({
                 attributes: ['code', 'name']
-            })
-                .then((staffs) => {
-                    res.render(StaffConst.buildViewPath('staff_list'), { staffList: staffs });
-                })
-                .catch((e) => {
-                    // console.log(e);
-                    // next();
-                    res.send('ただいま障害により大変ご迷惑をお掛けしております。');
-                });
+            }).then((staffs) => {
+                let superStaffData = new SuperStaffData();
+
+                superStaffData.sessionLogin = true;
+                superStaffData.sessionStaffName = req.session.staff_name;
+
+                res.render(StaffConst.buildViewPath('staff_list'), { staffList: staffs });
+            }).catch((e) => {
+                // console.log(e);
+                // next();
+                res.send('ただいま障害により大変ご迷惑をお掛けしております。');
+            });
         } else {
 
         }

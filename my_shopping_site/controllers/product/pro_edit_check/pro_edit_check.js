@@ -61,6 +61,9 @@ module.exports = new class ProductEditCheckController {
                 // 処理なし   
             }
 
+            productEditCheckData.sessionLogin = true;
+            productEditCheckData.sessionStaffName = req.session.staff_name;
+
             let dataObject = productEditCheckData.dataObject;
             res.render(ProductConst.buildViewPath('pro_edit_check'), dataObject);
             // res.send("OK");

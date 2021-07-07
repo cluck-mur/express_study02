@@ -37,6 +37,11 @@ module.exports = new class StaffAddDoneController {
             //--
             db.mst_staff.create({ name: staffName, password: staffPass })
                 .then(() => {
+                    let superStaffData = new SuperStaffData();
+
+                    superStaffData.sessionLogin = true;
+                    superStaffData.sessionStaffName = req.session.staff_name;
+
                     res.render(StaffConst.buildViewPath('staff_add_done'), { name: staffName });
                 })
                 .catch((e) => {

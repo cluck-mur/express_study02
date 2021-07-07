@@ -53,6 +53,9 @@ module.exports = new class StaffAddCheckController {
                 // 処理なし   
             }
 
+            staffAddCheckData.sessionLogin = true;
+            staffAddCheckData.sessionStaffName = req.session.staff_name;
+            
             let dataObject = staffAddCheckData.dataObject;
             res.render(StaffConst.buildViewPath('staff_add_check'), dataObject);
             // res.send("OK");

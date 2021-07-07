@@ -36,15 +36,22 @@ module.exports = new class ProductAddDoneController {
             //--
             // データベースに保存
             //--
-            db.mst_product.create({ name: productName, price: productPrice, gazou: imageName })
-                .then(() => {
-                    res.render(ProductConst.buildViewPath('pro_add_done'), { name: productName });
-                })
-                .catch((e) => {
-                    // console.log(e);
-                    // next();
-                    res.send('ただいま障害により大変ご迷惑をお掛けしております。');
-                });
+            db.mst_product.create({
+                name: productName,
+                price: productPrice,
+                gazou: imageName
+            }).then(() => {
+                let superProductData = new SuperProductData();
+
+                superProductData.sessionLogin = true;
+                superProductData.sessionStaffName = req.session.staff_name;
+
+                res.render(ProductConst.buildViewPath('pro_add_done'), { name: productName });
+            }).catch((e) => {
+                // console.log(e);
+                // next();
+                res.send('ただいま障害により大変ご迷惑をお掛けしております。');
+            });
         } else {
 
         }

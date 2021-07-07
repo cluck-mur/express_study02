@@ -57,6 +57,9 @@ module.exports = new class ProductAddCheckController {
                 // 処理なし   
             }
 
+            productAddCheckData.sessionLogin = true;
+            productAddCheckData.sessionStaffName = req.session.staff_name;
+
             let dataObject = productAddCheckData.dataObject;
             res.render(ProductConst.buildViewPath('pro_add_check'), dataObject);
             // res.send("OK");

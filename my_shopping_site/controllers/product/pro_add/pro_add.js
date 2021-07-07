@@ -23,6 +23,11 @@ module.exports = new class StaffAddController {
         sessionRegerateId(req, res);
         // セッションを確認
         if (req.session.login) {
+            let superProductData = new SuperProductData();
+
+            superProductData.sessionLogin = true;
+            superProductData.sessionStaffName = req.session.staff_name;
+
             res.render(ProductConst.buildViewPath('pro_add'), {});
         } else {
 

@@ -55,6 +55,11 @@ module.exports = new class StaffEditCheckController {
                 // 処理なし   
             }
 
+            let superStaffData = new SuperStaffData();
+
+            superStaffData.sessionLogin = true;
+            superStaffData.sessionStaffName = req.session.staff_name;
+
             let dataObject = staffEditCheckData.dataObject;
             res.render(StaffConst.buildViewPath('staff_edit_check'), dataObject);
             // res.send("OK");

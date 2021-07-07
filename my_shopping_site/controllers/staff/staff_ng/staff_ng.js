@@ -25,6 +25,11 @@ module.exports = new class StaffNgController {
         sessionRegerateId(req, res);
         // セッションを確認
         if (req.session.login) {
+            let superStaffData = new SuperStaffData();
+
+            superStaffData.sessionLogin = true;
+            superStaffData.sessionStaffName = req.session.staff_name;
+
             res.render(StaffConst.buildViewPath('staff_ng'), {});
         } else {
 
