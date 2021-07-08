@@ -1,7 +1,7 @@
 'use strict'
 const db = require("../../../models");
 const ProductConst = require('../common/pro_const');
-const SuperProductData = require('../common/super_pro_data');
+const ProductDispData = require('./pro_disp_data');
 const ControllerConst = require('../../common/controller_const');
 const sessionRegerateId = require('../../common/session_regerate_id');
 
@@ -38,12 +38,17 @@ module.exports = new class ProductDispController {
                 if (products && products.length > 0) {
                     let productData = products[0];
 
-                    let superProductData = new SuperProductData();
+                    let productDispData = new ProductDispData(
+                        productData.code,
+                        productData.name,
+                        productData.price,
+                        productData.gazou
+                    );
+                    productDispData.sessionLogin = true;
+                    productDispData.sessionStaffName = req.session.staff_name;
 
-                    superProductData.sessionLogin = true;
-                    superProductData.sessionStaffName = req.session.staff_name;
-
-                    res.render(ProductConst.buildViewPath('pro_disp'), { productData: productData });
+                    let dataObject = productDispData.dataObject;
+                    res.render(ProductConst.buildViewPath('pro_disp'), dataObject);
                 } else {
                     res.send('指定された商品は見つかりませんでした。');
                 }

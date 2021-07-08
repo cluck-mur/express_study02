@@ -24,11 +24,11 @@ module.exports = new class StaffAddController {
         // セッションを確認
         if (req.session.login) {
             let superProductData = new SuperProductData();
-
             superProductData.sessionLogin = true;
             superProductData.sessionStaffName = req.session.staff_name;
 
-            res.render(ProductConst.buildViewPath('pro_add'), {});
+            let dataObject = superProductData.dataObject;
+            res.render(ProductConst.buildViewPath('pro_add'), dataObject);
         } else {
 
         }

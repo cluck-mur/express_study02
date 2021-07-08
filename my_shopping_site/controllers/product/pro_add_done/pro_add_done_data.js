@@ -1,28 +1,21 @@
 'use strict';
 const crypto = require('crypto');
 const SuperProductData = require('../common/super_pro_data');
-const ProductAddCheckData = require('../pro_add_check/pro_add_check_data');
 
-module.exports = class ProductEditCheckData extends ProductAddCheckData {
-    #productCode = null;
-    #imageNameOld = null;
+module.exports = class ProductAddDoneData extends SuperProductData {
+    #productName = null;
 
     /**
      * コンストラクター
      */
-    constructor(productCode, productName, productPrice, imageName, imageNameOld) {
-        // super();
-        super(productName, productPrice, imageName);
+    constructor(productName) {
+        super();
 
-        this.#productCode = productCode;
-        this.#imageNameOld = imageNameOld;
+        this.#productName = productName;
     }
 
-    get productCode() {
-        return this.#productCode;
-    }
-    get imageNameOld() {
-        return this.#imageNameOld;
+    get productName() {
+        return this.#productName;
     }
 
     /**
@@ -39,11 +32,9 @@ module.exports = class ProductEditCheckData extends ProductAddCheckData {
      */
     #makeObject() {
         return {
-            productCode: this.productCode,
-            productName: this.productName,
+            name: this.productName,
             productPrice: this.productPrice,
             imageName: this.imageName,
-            imageNameOld: this.imageNameOld,
             productNameIsError: this.productNameIsError,
             productNameErrorMessage: this.productNameErrorMessage,
             productPriceIsError: this.productPriceIsError,

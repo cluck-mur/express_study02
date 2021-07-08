@@ -84,6 +84,8 @@ module.exports = class ProductAddCheckData extends SuperProductData {
             productNameErrorMessage: this.productNameErrorMessage,
             productPriceIsError: this.productPriceIsError,
             productPriceErrorMessage: this.productPriceErrorMessage,
+            sessionLogin: this.sessionLogin,
+            sessionStaffName: this.sessionStaffName,
         };
     }
 }

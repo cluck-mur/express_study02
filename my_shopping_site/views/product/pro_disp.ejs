@@ -14,13 +14,13 @@
   商品情報参照<br />
   <br />
   商品コード <br />
-  <%- productData.code %><br />
+  <%- code %><br />
   商品名<br />
-  <%- productData.name %><br />
+  <%- name %><br />
   価格<br />
-  <%- productData.price %> 円<br />
-  <% if (productData.gazou && productData.gazou.length > 0) { %>
-    <img src="<%- '/images/' + productData.gazou %>">
+  <%- price %> 円<br />
+  <% if (gazou && gazou.length > 0) { %>
+    <img src="<%- '/images/' + gazou %>">
   <% } %>
   <br />
   <input type="button" onclick="history.back()" value="戻る">

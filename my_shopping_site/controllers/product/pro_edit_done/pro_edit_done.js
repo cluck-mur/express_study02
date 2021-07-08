@@ -81,11 +81,11 @@ module.exports = new class ProductEditDoneController {
                 }
 
                 let superProductData = new SuperProductData();
-
                 superProductData.sessionLogin = true;
                 superProductData.sessionStaffName = req.session.staff_name;
 
-                res.render(ProductConst.buildViewPath('pro_edit_done'), {});
+                let dataObject = superProductData.dataObject;
+                res.render(ProductConst.buildViewPath('pro_edit_done'), dataObject);
             }).catch((e) => {
                 // console.log(e);
                 // next();

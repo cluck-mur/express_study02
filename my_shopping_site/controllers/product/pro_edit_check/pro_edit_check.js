@@ -39,7 +39,13 @@ module.exports = new class ProductEditCheckController {
             imageName = htmlspecialchars(imageName);
             imageNameOld = htmlspecialchars(imageNameOld);
 
-            let productEditCheckData = new ProductEditCheckData(productCode, productName, productPrice, imageName, imageNameOld);
+            let productEditCheckData = new ProductEditCheckData(
+                productCode,
+                productName,
+                productPrice,
+                imageName,
+                imageNameOld
+            );
 
             // 商品名を確認
             if (!productName | productName.length < 1) {

@@ -26,11 +26,11 @@ module.exports = new class ProductNgController {
         // セッションを確認
         if (req.session.login) {
             let superProductData = new SuperProductData();
-
             superProductData.sessionLogin = true;
             superProductData.sessionStaffName = req.session.staff_name;
 
-            res.render(ProductConst.buildViewPath('pro_ng'), {});
+            let dataObject = superProductData.dataObject;
+            res.render(ProductConst.buildViewPath('pro_ng'), dataObject);
         } else {
 
         }

@@ -2,7 +2,7 @@
 const db = require("../../../models");
 const htmlspecialchars = require('htmlspecialchars');
 const ProductConst = require('../common/pro_const');
-const SuperProductData = require('../common/super_pro_data');
+const ProductAddDoneData = require('./pro_add_done_data');
 const ControllerConst = require('../../common/controller_const');
 const sessionRegerateId = require('../../common/session_regerate_id');
 
@@ -41,12 +41,12 @@ module.exports = new class ProductAddDoneController {
                 price: productPrice,
                 gazou: imageName
             }).then(() => {
-                let superProductData = new SuperProductData();
+                let productAddDoneData = new ProductAddDoneData(productName);
+                productAddDoneData.sessionLogin = true;
+                productAddDoneData.sessionStaffName = req.session.staff_name;
 
-                superProductData.sessionLogin = true;
-                superProductData.sessionStaffName = req.session.staff_name;
-
-                res.render(ProductConst.buildViewPath('pro_add_done'), { name: productName });
+                let dataObject = productAddDoneData.dataObject;
+                res.render(ProductConst.buildViewPath('pro_add_done'), dataObject);
             }).catch((e) => {
                 // console.log(e);
                 // next();

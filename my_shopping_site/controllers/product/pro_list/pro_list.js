@@ -2,7 +2,7 @@
 const db = require("../../../models");
 const htmlspecialchars = require('htmlspecialchars');
 const ProductConst = require('../common/pro_const');
-const SuperProductData = require('../common/super_pro_data');
+const ProductListData = require('./pro_list_data');
 const ControllerConst = require('../../common/controller_const');
 const sessionRegerateId = require('../../common/session_regerate_id');
 
@@ -29,14 +29,14 @@ module.exports = new class ProductListController {
             // データベースから取得
             //--
             db.mst_product.findAll({
-                attributes: ['code', 'name', 'price']
+                attributes: ['code', 'name', 'price', 'gazou']
             }).then((products) => {
-                let superProductData = new SuperProductData();
+                let productListData = new ProductListData(products);
+                productListData.sessionLogin = true;
+                productListData.sessionStaffName = req.session.staff_name;
 
-                superProductData.sessionLogin = true;
-                superProductData.sessionStaffName = req.session.staff_name;
-
-                res.render(ProductConst.buildViewPath('pro_list'), { productList: products });
+                let dataObject = productListData.dataObject;
+                res.render(ProductConst.buildViewPath('pro_list'), dataObject);
             }).catch((e) => {
                 // console.log(e);
                 // next();

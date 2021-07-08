@@ -16,6 +16,9 @@
     <% for (let i=0; i < productList.length; i++ ) { %>
       <input type="radio" name="procode" value="<%= productList[i].code %>">
       <%- productList[i].name %> --- <%- productList[i].price %> 円
+      <% if (productList[i].gazou && productList[i].gazou.length > 0) { %>
+        <img src="<%- '/images/' + productList[i].gazou %>" style="width: 80px; height: auto; border: 1px solid #000000;">
+      <% } %>
       <br />
     <% } %>
     <br />
