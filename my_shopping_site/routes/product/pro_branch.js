@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var productBranchController = require('../../controllers/product/pro_branch/pro_branch');
+var ProductBranchController = require('../../controllers/product/pro_branch/pro_branch');
 
 /**
  * GET home page.
  */
-router.post('/', productBranchController.productBranch);
+router.post('/', (new ProductBranchController).controller);
 
 module.exports = router;

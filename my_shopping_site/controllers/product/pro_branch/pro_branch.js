@@ -2,14 +2,15 @@
 const db = require("../../../models");
 const SuperProductData = require('../common/super_pro_data');
 const ControllerConst = require('../../common/controller_const');
-const sessionRegerateId = require('../../common/session_regerate_id');
+const SuperProductController = require('../common/super_pro_controller');
 
-module.exports = new class ProductBranchController {
+module.exports = class ProductBranchController extends SuperProductController {
     /**
      * constructor
      * コンストラクタ
      */
     constructor() {
+        super();
     }
 
     /**
@@ -18,9 +19,9 @@ module.exports = new class ProductBranchController {
      * @param {*} res 
      * @param {*} next 
      */
-    productBranch(req, res, next) {
+    controller(req, res, next) {
         // セッションIDを再生成
-        sessionRegerateId(req, res);
+        super.sessionRegerateId(req, res);
         // セッションを確認
         if (req.session.login) {
             if (req.body.disp) {
@@ -45,7 +46,8 @@ module.exports = new class ProductBranchController {
                 }
             }
         } else {
-
+            // NG画面にリダイレクト
+            super.redirectToSessionNg(req, res);
         }
     }
 }

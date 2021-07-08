@@ -4,14 +4,15 @@ const htmlspecialchars = require('htmlspecialchars');
 const StaffConst = require('../common/staff_const');
 const SuperStaffData = require('../common/super_staff_data');
 const ControllerConst = require('../../common/controller_const');
-const sessionRegerateId = require('../../common/session_regerate_id');
+const SuperStaffController = require('../common/super_staff_controller');
 
-module.exports = new class StaffDeleteDoneController {
+module.exports = class StaffDeleteDoneController extends SuperStaffController {
     /**
      * constructor
      * コンストラクタ
      */
     constructor() {
+        super();
     }
 
     /**
@@ -20,9 +21,9 @@ module.exports = new class StaffDeleteDoneController {
      * @param {*} res 
      * @param {*} next 
      */
-    staffDeleteDone(req, res, next) {
+    controller(req, res, next) {
         // セッションIDを再生成
-        sessionRegerateId(req, res);
+        super.sessionRegerateId(req, res);
         // セッションを確認
         if (req.session.login) {
             let staffCode = req.body.code;
@@ -51,7 +52,8 @@ module.exports = new class StaffDeleteDoneController {
                 res.send('ただいま障害により大変ご迷惑をお掛けしております。');
             });
         } else {
-
+            // NG画面にリダイレクト
+            super.redirectToSessionNg(req, res);
         }
     }
 }

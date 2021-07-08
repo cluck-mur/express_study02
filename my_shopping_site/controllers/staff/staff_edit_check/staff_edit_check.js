@@ -3,14 +3,15 @@ const htmlspecialchars = require('htmlspecialchars');
 const StaffEditCheckData = require('./staff_edit_check_data');
 const StaffConst = require('../common/staff_const');
 const ControllerConst = require('../../common/controller_const');
-const sessionRegerateId = require('../../common/session_regerate_id');
+const SuperStaffController = require('../common/super_staff_controller');
 
-module.exports = new class StaffEditCheckController {
+module.exports = class StaffEditCheckController extends SuperStaffController {
     /**
      * constructor
      * コンストラクタ
      */
     constructor() {
+        super();
     }
 
     /**
@@ -19,9 +20,9 @@ module.exports = new class StaffEditCheckController {
      * @param {*} res 
      * @param {*} next 
      */
-    staffEditCheck(req, res, next) {
+    controller(req, res, next) {
         // セッションIDを再生成
-        sessionRegerateId(req, res);
+        super.sessionRegerateId(req, res);
         // セッションを確認
         if (req.session.login) {
             let staffCode = req.body.code;
@@ -62,7 +63,8 @@ module.exports = new class StaffEditCheckController {
             res.render(StaffConst.buildViewPath('staff_edit_check'), dataObject);
             // res.send("OK");
         } else {
-
+            // NG画面にリダイレクト
+            super.redirectToSessionNg(req, res);
         }
     }
 }

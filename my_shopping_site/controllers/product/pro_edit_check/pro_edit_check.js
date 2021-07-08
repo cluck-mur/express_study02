@@ -3,14 +3,15 @@ const htmlspecialchars = require('htmlspecialchars');
 const ProductEditCheckData = require('./pro_edit_check_data');
 const ProductConst = require('../common/pro_const');
 const ControllerConst = require('../../common/controller_const');
-const sessionRegerateId = require('../../common/session_regerate_id');
+const SuperProductController = require('../common/super_pro_controller');
 
-module.exports = new class ProductEditCheckController {
+module.exports = class ProductEditCheckController extends SuperProductController {
     /**
      * constructor
      * コンストラクタ
      */
     constructor() {
+        super();
     }
 
     /**
@@ -19,9 +20,9 @@ module.exports = new class ProductEditCheckController {
      * @param {*} res 
      * @param {*} next 
      */
-    productEditCheck(req, res, next) {
+    controller(req, res, next) {
         // セッションIDを再生成
-        sessionRegerateId(req, res);
+        super.sessionRegerateId(req, res);
         // セッションを確認
         if (req.session.login) {
             let productCode = req.body.code;
@@ -74,7 +75,8 @@ module.exports = new class ProductEditCheckController {
             res.render(ProductConst.buildViewPath('pro_edit_check'), dataObject);
             // res.send("OK");
         } else {
-
+            // NG画面にリダイレクト
+            super.redirectToSessionNg(req, res);
         }
     }
 }

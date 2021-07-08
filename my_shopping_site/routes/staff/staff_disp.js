@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var staffDispController = require('../../controllers/staff/staff_disp/staff_disp');
+var StaffDispController = require('../../controllers/staff/staff_disp/staff_disp');
 
 /**
  * GET home page.
  */
-router.post('/', staffDispController.staffDisp);
+router.post('/', (new StaffDispController).controller);
 
 module.exports = router;

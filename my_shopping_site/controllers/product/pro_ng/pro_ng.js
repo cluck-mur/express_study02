@@ -4,14 +4,15 @@ const htmlspecialchars = require('htmlspecialchars');
 const ProductConst = require('../common/pro_const');
 const SuperProductData = require('../common/super_pro_data');
 const ControllerConst = require('../../common/controller_const');
-const sessionRegerateId = require('../../common/session_regerate_id');
+const SuperProductController = require('../common/super_pro_controller');
 
-module.exports = new class ProductNgController {
+module.exports = class ProductNgController extends SuperProductController {
     /**
      * constructor
      * コンストラクタ
      */
     constructor() {
+        super();
     }
 
     /**
@@ -20,9 +21,9 @@ module.exports = new class ProductNgController {
      * @param {*} res 
      * @param {*} next 
      */
-    productNg(req, res, next) {
+    controller(req, res, next) {
         // セッションIDを再生成
-        sessionRegerateId(req, res);
+        super.sessionRegerateId(req, res);
         // セッションを確認
         if (req.session.login) {
             let superProductData = new SuperProductData();
@@ -32,7 +33,8 @@ module.exports = new class ProductNgController {
             let dataObject = superProductData.dataObject;
             res.render(ProductConst.buildViewPath('pro_ng'), dataObject);
         } else {
-
+            // NG画面にリダイレクト
+            super.redirectToSessionNg(req, res);
         }
     }
 }

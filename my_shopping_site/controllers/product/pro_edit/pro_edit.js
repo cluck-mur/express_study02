@@ -3,14 +3,15 @@ const db = require("../../../models");
 const ProductConst = require('../common/pro_const');
 const ProductEditData = require('./pro_edit_data');
 const ControllerConst = require('../../common/controller_const');
-const sessionRegerateId = require('../../common/session_regerate_id');
+const SuperProductController = require('../common/super_pro_controller');
 
-module.exports = new class ProductEditController {
+module.exports = class ProductEditController extends SuperProductController {
     /**
      * constructor
      * コンストラクタ
      */
     constructor() {
+        super();
     }
 
     /**
@@ -19,9 +20,9 @@ module.exports = new class ProductEditController {
      * @param {*} res 
      * @param {*} next 
      */
-    productEdit(req, res, next) {
+    controller(req, res, next) {
         // セッションIDを再生成
-        sessionRegerateId(req, res);
+        super.sessionRegerateId(req, res);
         // セッションを確認
         if (req.session.login) {
             let productCode = req.body.procode;
@@ -58,7 +59,8 @@ module.exports = new class ProductEditController {
                 res.send('ただいま障害により大変ご迷惑をお掛けしております。');
             });
         } else {
-
+            // NG画面にリダイレクト
+            super.redirectToSessionNg(req, res);
         }
     }
 }

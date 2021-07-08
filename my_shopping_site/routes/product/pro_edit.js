@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var productEditController = require('../../controllers/product/pro_edit/pro_edit');
+var ProductEditController = require('../../controllers/product/pro_edit/pro_edit');
 
 /**
  * GET home page.
  */
-router.post('/', productEditController.productEdit);
+router.post('/', (new ProductEditController).controller);
 
 module.exports = router;

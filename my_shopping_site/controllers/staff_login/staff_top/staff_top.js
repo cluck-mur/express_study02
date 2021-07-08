@@ -6,7 +6,7 @@ const StaffTopData = require('./staff_top_data');
 const ControllerConst = require('../../common/controller_const');
 const sessionRegerateId = require('../../common/session_regerate_id');
 
-module.exports = new class StaffTopController {
+module.exports = class StaffTopController {
     /**
      * constructor
      * コンストラクタ
@@ -20,7 +20,7 @@ module.exports = new class StaffTopController {
      * @param {*} res 
      * @param {*} next 
      */
-    staffTop(req, res, next) {
+    controller(req, res, next) {
         // セッションIDを再生成
         sessionRegerateId(req, res);
         // セッションを確認

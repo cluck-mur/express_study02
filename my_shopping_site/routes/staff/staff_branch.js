@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var staffBranchController = require('../../controllers/staff/staff_branch/staff_branch');
+var StaffBranchController = require('../../controllers/staff/staff_branch/staff_branch');
 
 /**
  * GET home page.
  */
-router.post('/', staffBranchController.staffBranch);
+router.post('/', (new StaffBranchController).controller);
 
 module.exports = router;

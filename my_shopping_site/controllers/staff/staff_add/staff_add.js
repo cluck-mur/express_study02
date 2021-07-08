@@ -2,14 +2,15 @@
 const StaffConst = require('../common/staff_const');
 const SuperStaffData = require('../common/super_staff_data');
 const ControllerConst = require('../../common/controller_const');
-const sessionRegerateId = require('../../common/session_regerate_id');
+const SuperStaffController = require('../common/super_staff_controller');
 
-module.exports = new class StaffAddController {
+module.exports = class StaffAddController extends SuperStaffController {
     /**
      * constructor
      * コンストラクタ
      */
     constructor() {
+        super();
     }
 
     /**
@@ -18,9 +19,9 @@ module.exports = new class StaffAddController {
      * @param {*} res 
      * @param {*} next 
      */
-    staffAdd(req, res, next) {
+    controller(req, res, next) {
         // セッションIDを再生成
-        sessionRegerateId(req, res);
+        super.sessionRegerateId(req, res);
         // セッションを確認
         if (req.session.login) {
             let superStaffData = new SuperStaffData();
@@ -30,7 +31,8 @@ module.exports = new class StaffAddController {
             let dataObject = superStaffData.dataObject;
             res.render(StaffConst.buildViewPath('staff_add'), dataObject);
         } else {
-
+            // NG画面にリダイレクト
+            super.redirectToSessionNg(req, res);
         }
     }
 }

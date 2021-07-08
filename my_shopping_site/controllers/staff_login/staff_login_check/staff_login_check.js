@@ -4,7 +4,7 @@ const htmlspecialchars = require('htmlspecialchars');
 const StaffLoginCheckData = require('./staff_login_check_data');
 const StaffLoginConst = require('../common/staff_login_const');
 
-module.exports = new class StaffLoginCheckController {
+module.exports = class StaffLoginCheckController {
     /**
      * constructor
      * コンストラクタ
@@ -18,7 +18,7 @@ module.exports = new class StaffLoginCheckController {
      * @param {*} res 
      * @param {*} next 
      */
-    staffLoginCheck(req, res, next) {
+    controller(req, res, next) {
         // console.log(req.body);
         let staffCode = req.body.code;
         let staffPass = req.body.pass;
@@ -43,7 +43,7 @@ module.exports = new class StaffLoginCheckController {
                 req.session.login = true;
                 req.session.staff_code = staffCode;
                 req.session.staff_name = staffs[0].name;
-                
+
                 res.redirect('staff_top');
             } else {
                 staffLoginCheckData.isLoginOk = false;

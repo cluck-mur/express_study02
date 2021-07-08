@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var staffDeleteController = require('../../controllers/staff/staff_delete/staff_delete');
+var StaffDeleteController = require('../../controllers/staff/staff_delete/staff_delete');
 
 /**
  * GET home page.
  */
-router.post('/', staffDeleteController.staffDelete);
+router.post('/', (new StaffDeleteController).controller);
 
 module.exports = router;

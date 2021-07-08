@@ -3,7 +3,7 @@ const db = require("../../../models");
 const htmlspecialchars = require('htmlspecialchars');
 const StaffLoginConst = require('../common/staff_login_const');
 
-module.exports = new class StaffLoginController {
+module.exports = class StaffLoginController {
     /**
      * constructor
      * コンストラクタ
@@ -17,7 +17,7 @@ module.exports = new class StaffLoginController {
      * @param {*} res 
      * @param {*} next 
      */
-    staffLogin(req, res, next) {
+    controller(req, res, next) {
         res.render(StaffLoginConst.buildViewPath('staff_login'), {});
     }
 }
