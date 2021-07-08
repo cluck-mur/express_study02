@@ -15,6 +15,7 @@ var staffLoginRouter = require('./' + StaffLoginConst.buildRoutePathForRequire('
 var staffLoginCheckRouter = require('./' + StaffLoginConst.buildRoutePathForRequire('staff_login_check'));
 var staffTopRouter = require('./' + StaffLoginConst.buildRoutePathForRequire('staff_top'));
 var staffNologinNgRouter = require('./' + StaffLoginConst.buildRoutePathForRequire('staff_nologin_ng'));
+var staffLogoutRouter = require('./' + StaffLoginConst.buildRoutePathForRequire('staff_logout'));
 // staff 系
 var staffListRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_list'));
 var staffBranchRouter = require('./' + StaffConst.buildRoutePathForRequire('staff_branch'));
@@ -71,6 +72,7 @@ app.use('/staff_login/staff_login', staffLoginRouter);
 app.use('/staff_login/staff_login_check', staffLoginCheckRouter);
 app.use('/staff_login/staff_top', staffTopRouter);
 app.use('/staff_login/staff_nologin_ng', staffNologinNgRouter);
+app.use('/staff_login/staff_logout', staffLogoutRouter);
 // staff 系
 app.use('/staff/staff_list', staffListRouter);
 app.use('/staff/staff_add', staffAddRouter);
