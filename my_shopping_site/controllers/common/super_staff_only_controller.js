@@ -1,14 +1,15 @@
 'use strict'
 const ControllerConst = require('./controller_const');
 const session_regerate_id = require('./session_regerate_id');
+const SuperController = require('../common/super_controller');
 
-module.exports = class SuperStaffOnlyController {
+module.exports = class SuperStaffOnlyController extends SuperController {
     /**
      * constructor
      * コンストラクタ
      */
     constructor() {
-        this.dummy = 0;
+        super();
     }
 
     /**

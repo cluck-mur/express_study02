@@ -5,6 +5,7 @@ var StaffDeleteDoneController = require('../../controllers/staff/staff_delete_do
 /**
  * POST home page.
  */
-router.post('/', (new StaffDeleteDoneController).controller);
+ let controller = new StaffDeleteDoneController;
+ router.post('/', controller.controller.bind(controller));
 
 module.exports = router;

@@ -5,6 +5,7 @@ var StaffAddCheckController = require('../../controllers/staff/staff_add_check/s
 /**
  * POST home page.
  */
-router.post('/', (new StaffAddCheckController).controller);
+ let controller = new StaffAddCheckController;
+ router.post('/', controller.controller.bind(controller));
 
 module.exports = router;

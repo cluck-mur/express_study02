@@ -25,7 +25,7 @@ module.exports = class ProductDeleteDoneController extends SuperProductControlle
      */
     controller(req, res, next) {
         // セッションIDを再生成
-        super.sessionRegerateId(req, res);
+        this.sessionRegerateId(req, res);
         // セッションを確認
         if (req.session.login) {
             let productCode = req.body.code;
@@ -81,7 +81,7 @@ module.exports = class ProductDeleteDoneController extends SuperProductControlle
             });
         } else {
             // NG画面にリダイレクト
-            super.redirectToSessionNg(req, res);
+            this.redirectToSessionNg(req, res);
         }
     }
 }

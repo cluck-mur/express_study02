@@ -21,7 +21,7 @@ module.exports = class ProductAddController extends SuperProductController {
      */
     controller(req, res, next) {
         // セッションIDを再生成
-        super.sessionRegerateId(req, res);
+        this.sessionRegerateId(req, res);
         // セッションを確認
         if (req.session.login) {
             let superProductData = new SuperProductData();
@@ -33,7 +33,7 @@ module.exports = class ProductAddController extends SuperProductController {
             res.render(ProductConst.buildViewPath('pro_add'), dataObject);
         } else {
             // NG画面にリダイレクト
-            super.redirectToSessionNg(req, res);
+            this.redirectToSessionNg(req, res);
         }
     }
 }

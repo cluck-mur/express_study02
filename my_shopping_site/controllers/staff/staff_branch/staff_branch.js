@@ -21,7 +21,7 @@ module.exports = class StaffBranchController extends SuperStaffController {
      */
     controller(req, res, next) {
         // セッションIDを再生成
-        super.sessionRegerateId(req, res);
+        this.sessionRegerateId(req, res);
         // セッションを確認
         if (req.session.login) {
             let requestedFunction = req.body.name;
@@ -49,7 +49,7 @@ module.exports = class StaffBranchController extends SuperStaffController {
             }
         } else {
             // NG画面にリダイレクト
-            super.redirectToSessionNg(req, res);
+            this.redirectToSessionNg(req, res);
         }
     }
 }

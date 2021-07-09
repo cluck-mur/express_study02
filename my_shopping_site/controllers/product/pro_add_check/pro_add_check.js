@@ -22,9 +22,11 @@ module.exports = class ProductAddCheckController extends SuperProductController 
      */
     controller(req, res, next) {
         // セッションIDを再生成
-        super.sessionRegerateId(req, res);
+        this.sessionRegerateId(req, res);
         // セッションを確認
         if (req.session.login) {
+            this.htmlspecialchars(req);
+
             let productName = req.body.name;
             let productPrice = req.body.price;
             let imageName = null;
@@ -66,7 +68,7 @@ module.exports = class ProductAddCheckController extends SuperProductController 
             // res.send("OK");
         } else {
             // NG画面にリダイレクト
-            super.redirectToSessionNg(req, res);
+            this.redirectToSessionNg(req, res);
         }
     }
 }

@@ -5,6 +5,7 @@ var ProductAddDoneController = require('../../controllers/product/pro_add_done/p
 /**
  * POST home page.
  */
-router.post('/', (new ProductAddDoneController).controller);
+ let controller = new ProductAddDoneController;
+ router.post('/', controller.controller.bind(controller));
 
 module.exports = router;

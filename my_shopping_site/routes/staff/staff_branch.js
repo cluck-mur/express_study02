@@ -5,6 +5,7 @@ var StaffBranchController = require('../../controllers/staff/staff_branch/staff_
 /**
  * GET home page.
  */
-router.post('/', (new StaffBranchController).controller);
+ let controller = new StaffBranchController;
+ router.post('/', controller.controller.bind(controller));
 
 module.exports = router;

@@ -27,7 +27,7 @@ module.exports = class StaffAddCheckData extends SuperStaffData {
         this.#staffPassIsError = false;
         this.#staffPassErrorMessage = null;
 
-        super.md5Pass = this.#staffPass;
+        this.md5Pass = this.#staffPass;
     }
 
     get staffName() {

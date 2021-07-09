@@ -5,6 +5,7 @@ var ProductAddController = require('../../controllers/product/pro_add/pro_add');
 /**
  * GET home page.
  */
-router.get('/', (new ProductAddController).controller);
+ let controller = new ProductAddController;
+ router.get('/', controller.controller.bind(controller));
 
 module.exports = router;

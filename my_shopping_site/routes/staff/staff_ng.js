@@ -5,6 +5,7 @@ var StaffNgController = require('../../controllers/staff/staff_ng/staff_ng');
 /**
  * GET home page.
  */
-router.get('/', (new StaffNgController).controller);
+ let controller = new StaffNgController;
+ router.get('/', controller.controller.bind(controller));
 
 module.exports = router;

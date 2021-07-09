@@ -5,6 +5,7 @@ var ProductEditController = require('../../controllers/product/pro_edit/pro_edit
 /**
  * GET home page.
  */
-router.post('/', (new ProductEditController).controller);
+ let controller = new ProductEditController;
+ router.post('/', controller.controller.bind(controller));
 
 module.exports = router;

@@ -5,6 +5,7 @@ var StaffDispController = require('../../controllers/staff/staff_disp/staff_disp
 /**
  * GET home page.
  */
-router.post('/', (new StaffDispController).controller);
+ let controller = new StaffDispController;
+ router.post('/', controller.controller.bind(controller));
 
 module.exports = router;

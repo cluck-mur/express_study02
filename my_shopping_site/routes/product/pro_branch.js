@@ -5,6 +5,7 @@ var ProductBranchController = require('../../controllers/product/pro_branch/pro_
 /**
  * GET home page.
  */
-router.post('/', (new ProductBranchController).controller);
+let controller = new ProductBranchController;
+router.post('/', controller.controller.bind(controller));
 
 module.exports = router;

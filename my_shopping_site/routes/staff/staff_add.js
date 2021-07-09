@@ -5,6 +5,7 @@ var StaffAddController = require('../../controllers/staff/staff_add/staff_add');
 /**
  * GET home page.
  */
-router.get('/', (new StaffAddController).controller);
+ let controller = new StaffAddController;
+ router.get('/', controller.controller.bind(controller));
 
 module.exports = router;

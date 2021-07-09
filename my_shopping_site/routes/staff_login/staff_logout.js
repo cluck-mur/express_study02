@@ -5,6 +5,7 @@ var StaffLogoutController = require('../../controllers/staff_login/staff_logout/
 /**
  * POST home page.
  */
-router.get('/', (new StaffLogoutController).controller);
+ let controller = new StaffLogoutController;
+ router.get('/', controller.controller.bind(controller));
 
 module.exports = router;

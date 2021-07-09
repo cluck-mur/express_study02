@@ -5,6 +5,7 @@ var ProductNgController = require('../../controllers/product/pro_ng/pro_ng');
 /**
  * GET home page.
  */
-router.get('/', (new ProductNgController).controller);
+ let controller = new ProductNgController;
+ router.post('/', controller.controller.bind(controller));
 
 module.exports = router;

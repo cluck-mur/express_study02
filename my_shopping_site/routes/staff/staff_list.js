@@ -5,6 +5,7 @@ var StaffListController = require('../../controllers/staff/staff_list/staff_list
 /**
  * POST home page.
  */
-router.get('/', (new StaffListController).controller);
+ let controller = new StaffListController;
+ router.get('/', controller.controller.bind(controller));
 
 module.exports = router;

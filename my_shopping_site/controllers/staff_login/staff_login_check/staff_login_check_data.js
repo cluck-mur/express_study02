@@ -19,7 +19,7 @@ module.exports = class StaffLoginCheckData extends SuperStaffLoginData {
         this.#staffPass = staffPass;
         this.#isLoginOk = false;
 
-        super.md5Pass = this.#staffPass;
+        this.md5Pass = this.#staffPass;
     }
 
     get staffCode() {

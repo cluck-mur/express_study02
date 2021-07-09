@@ -5,6 +5,7 @@ var ProductListController = require('../../controllers/product/pro_list/pro_list
 /**
  * POST home page.
  */
-router.get('/', (new ProductListController).controller);
+ let controller = new ProductListController;
+ router.get('/', controller.controller.bind(controller));
 
 module.exports = router;

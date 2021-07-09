@@ -5,6 +5,7 @@ var StaffEditDoneController = require('../../controllers/staff/staff_edit_done/s
 /**
  * POST home page.
  */
-router.post('/', (new StaffEditDoneController).controller);
+ let controller = new StaffEditDoneController;
+ router.post('/', controller.controller.bind(controller));
 
 module.exports = router;

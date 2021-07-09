@@ -5,6 +5,7 @@ var ProductDispController = require('../../controllers/product/pro_disp/pro_disp
 /**
  * GET home page.
  */
-router.post('/', (new ProductDispController).controller);
+ let controller = new ProductDispController;
+ router.post('/', controller.controller.bind(controller));
 
 module.exports = router;

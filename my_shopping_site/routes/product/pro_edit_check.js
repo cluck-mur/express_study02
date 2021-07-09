@@ -6,6 +6,7 @@ var productUlGazou = require('../../controllers/product/common/pro_ul_gazou');
 /**
  * POST home page.
  */
-router.post('/', productUlGazou, (new ProductEditCheckController).controller);
+ let controller = new ProductEditCheckController;
+ router.post('/', productUlGazou, controller.controller.bind(controller));
 
 module.exports = router;

@@ -5,6 +5,7 @@ var ProductDeleteController = require('../../controllers/product/pro_delete/pro_
 /**
  * GET home page.
  */
-router.post('/', (new ProductDeleteController).controller);
+ let controller = new ProductDeleteController;
+ router.post('/', controller.controller.bind(controller));
 
 module.exports = router;
