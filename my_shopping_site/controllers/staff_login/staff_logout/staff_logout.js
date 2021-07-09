@@ -1,12 +1,14 @@
 'use strict';
 const StaffLoginConst = require('../common/staff_login_const');
+const SuperController = require('../../common/super_controller');
 
-module.exports = class StaffLogoutController {
+module.exports = class StaffLogoutController extends SuperController {
     /**
      * constructor
      * コンストラクタ
      */
     constructor() {
+        super();
     }
 
     /**

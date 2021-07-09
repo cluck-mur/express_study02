@@ -1,6 +1,5 @@
 'use strict';
 const db = require("../../../models");
-const htmlspecialchars = require('htmlspecialchars');
 const ProductConst = require('../common/pro_const');
 const ProductListData = require('./pro_list_data');
 const ControllerConst = require('../../common/controller_const');

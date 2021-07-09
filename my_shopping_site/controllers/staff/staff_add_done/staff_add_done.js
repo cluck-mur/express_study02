@@ -1,6 +1,5 @@
 'use strict';
 const db = require("../../../models");
-const htmlspecialchars = require('htmlspecialchars');
 const StaffConst = require('../common/staff_const');
 const StaffAddDoneData = require('./staff_add_done_data');
 const ControllerConst = require('../../common/controller_const');
@@ -26,12 +25,9 @@ module.exports = class StaffAddDoneController extends SuperStaffController {
         this.sessionRegerateId(req, res);
         // セッションを確認
         if (req.session.login) {
-
-            let staffName = req.body.name;
-            let staffPass = req.body.pass;
-
-            staffName = htmlspecialchars(staffName);
-            staffPass = htmlspecialchars(staffPass);
+            let sanitized = this.htmlspecialchars(req);
+            let staffName = sanitized.body.name;
+            let staffPass = sanitized.body.pass;
 
             //--
             // データベースに保存

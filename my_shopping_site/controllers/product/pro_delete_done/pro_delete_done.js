@@ -2,7 +2,6 @@
 const db = require("../../../models");
 const fs = require('fs');
 const path = require('path');
-const htmlspecialchars = require('htmlspecialchars');
 const ProductConst = require('../common/pro_const');
 const SuperProductData = require('../common/super_pro_data');
 const ControllerConst = require('../../common/controller_const');
@@ -28,15 +27,11 @@ module.exports = class ProductDeleteDoneController extends SuperProductControlle
         this.sessionRegerateId(req, res);
         // セッションを確認
         if (req.session.login) {
-            let productCode = req.body.code;
-            let productName = req.body.name;
-            let productPrice = req.body.price;
-            let imageName = req.body.gazou_name;
-
-            productCode = htmlspecialchars(productCode);
-            productName = htmlspecialchars(productName);
-            productPrice = htmlspecialchars(productPrice);
-            imageName = htmlspecialchars(imageName);
+            let sanitized = this.htmlspecialchars(req);
+            let productCode = sanitized.body.code;
+            let productName = sanitized.body.name;
+            let productPrice = sanitized.body.price;
+            let imageName = sanitized.body.gazou_name;
 
             //--
             // データベースに保存

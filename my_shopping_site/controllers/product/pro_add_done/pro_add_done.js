@@ -1,6 +1,5 @@
 'use strict';
 const db = require("../../../models");
-const htmlspecialchars = require('htmlspecialchars');
 const ProductConst = require('../common/pro_const');
 const ProductAddDoneData = require('./pro_add_done_data');
 const ControllerConst = require('../../common/controller_const');
@@ -26,13 +25,10 @@ module.exports = class ProductAddDoneController extends SuperProductController {
         this.sessionRegerateId(req, res);
         // セッションを確認
         if (req.session.login) {
-            let productName = req.body.name;
-            let productPrice = req.body.price;
-            let imageName = req.body.gazou_name;
-
-            productName = htmlspecialchars(productName);
-            productPrice = htmlspecialchars(productPrice);
-            imageName = htmlspecialchars(imageName);
+            let sanitized = this.htmlspecialchars(req);
+            let productName = sanitized.body.name;
+            let productPrice = sanitized.body.price;
+            let imageName = sanitized.body.gazou_name;
 
             //--
             // データベースに保存

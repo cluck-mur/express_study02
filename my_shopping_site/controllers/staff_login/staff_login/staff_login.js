@@ -1,14 +1,15 @@
 'use strict';
 const db = require("../../../models");
-const htmlspecialchars = require('htmlspecialchars');
 const StaffLoginConst = require('../common/staff_login_const');
+const SuperController = require('../../common/super_controller');
 
-module.exports = class StaffLoginController {
+module.exports = class StaffLoginController extends SuperController {
     /**
      * constructor
      * コンストラクタ
      */
     constructor() {
+        super();
     }
 
     /**

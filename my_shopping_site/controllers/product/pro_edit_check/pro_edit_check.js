@@ -1,5 +1,4 @@
 'use strict';
-const htmlspecialchars = require('htmlspecialchars');
 const ProductEditCheckData = require('./pro_edit_check_data');
 const ProductConst = require('../common/pro_const');
 const ControllerConst = require('../../common/controller_const');
@@ -25,20 +24,15 @@ module.exports = class ProductEditCheckController extends SuperProductController
         this.sessionRegerateId(req, res);
         // セッションを確認
         if (req.session.login) {
-            let productCode = req.body.code;
-            let productName = req.body.name;
-            let productPrice = req.body.price;
+            let sanitized = this.htmlspecialchars(req);
+            let productCode = sanitized.body.code;
+            let productName = sanitized.body.name;
+            let productPrice = sanitized.body.price;
             let imageName = null;
-            if (req.file && req.file.originalname.length) {
-                imageName = req.file.originalname;
+            if (sanitized.file && sanitized.file.originalname.length) {
+                imageName = sanitized.file.originalname;
             }
-            let imageNameOld = req.body.gazou_name_old;
-
-            productCode = htmlspecialchars(productCode);
-            productName = htmlspecialchars(productName);
-            productPrice = htmlspecialchars(productPrice);
-            imageName = htmlspecialchars(imageName);
-            imageNameOld = htmlspecialchars(imageNameOld);
+            let imageNameOld = sanitized.body.gazou_name_old;
 
             let productEditCheckData = new ProductEditCheckData(
                 productCode,

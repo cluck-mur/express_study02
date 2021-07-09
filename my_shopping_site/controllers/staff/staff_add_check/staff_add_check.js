@@ -1,5 +1,4 @@
 'use strict';
-const htmlspecialchars = require('htmlspecialchars');
 const StaffAddCheckData = require('./staff_add_check_data');
 const StaffConst = require('../common/staff_const');
 const ControllerConst = require('../../common/controller_const');
@@ -25,13 +24,10 @@ module.exports = class StaffAddCheckController extends SuperStaffController {
         this.sessionRegerateId(req, res);
         // セッションを確認
         if (req.session.login) {
-            let staffName = req.body.name;
-            let staffPass = req.body.pass;
-            let staffPass2 = req.body.pass2;
-
-            staffName = htmlspecialchars(staffName);
-            staffPass = htmlspecialchars(staffPass);
-            staffPass2 = htmlspecialchars(staffPass2);
+            let sanitized = this.htmlspecialchars(req);
+            let staffName = sanitized.body.name;
+            let staffPass = sanitized.body.pass;
+            let staffPass2 = sanitized.body.pass2;
 
             let staffAddCheckData = new StaffAddCheckData(staffName, staffPass, staffPass2);
 

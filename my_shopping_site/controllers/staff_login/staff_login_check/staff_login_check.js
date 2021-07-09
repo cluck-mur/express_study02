@@ -1,15 +1,16 @@
 'use strict';
 const db = require('../../../models');
-const htmlspecialchars = require('htmlspecialchars');
 const StaffLoginCheckData = require('./staff_login_check_data');
 const StaffLoginConst = require('../common/staff_login_const');
+const SuperController = require('../../common/super_controller');
 
-module.exports = class StaffLoginCheckController {
+module.exports = class StaffLoginCheckController extends SuperController {
     /**
      * constructor
      * コンストラクタ
      */
     constructor() {
+        super();
     }
 
     /**
@@ -19,12 +20,9 @@ module.exports = class StaffLoginCheckController {
      * @param {*} next 
      */
     controller(req, res, next) {
-        // console.log(req.body);
-        let staffCode = req.body.code;
-        let staffPass = req.body.pass;
-
-        staffCode = htmlspecialchars(staffCode);
-        staffPass = htmlspecialchars(staffPass);
+        let sanitized = this.htmlspecialchars(req);
+        let staffCode = sanitized.body.code;
+        let staffPass = sanitized.body.pass;
 
         let staffLoginCheckData = new StaffLoginCheckData(staffCode, staffPass);
 

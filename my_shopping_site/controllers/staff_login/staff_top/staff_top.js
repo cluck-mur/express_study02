@@ -5,13 +5,15 @@ const StaffLoginConst = require('../common/staff_login_const');
 const StaffTopData = require('./staff_top_data');
 const ControllerConst = require('../../common/controller_const');
 const sessionRegerateId = require('../../common/session_regerate_id');
+const SuperController = require('../../common/super_controller');
 
-module.exports = class StaffTopController {
+module.exports = class StaffTopController extends SuperController {
     /**
      * constructor
      * コンストラクタ
      */
     constructor() {
+        super();
     }
 
     /**
