@@ -14,16 +14,17 @@
   <% } %>
   <br />
   商品一覧<br /><br />
-  <% for (let i=0; i < shopProductList.length; i++ ) { %>
-    <a href="<%- `shop_product?procode=${shopProductList[i].code}` %>">
-      <%- shopProductList[i].name %> --- <%- shopProductList[i].price %> 円
-      <% if (shopProductList[i].gazou && shopProductList[i].gazou.length > 0) { %>
-        <img src="<%- '/images/' + shopProductList[i].gazou %>" style="width: 80px; height: auto; border: 1px solid #000000;">
+  <% if (cart && cart.length > 0) { %>
+    <% for (let i=0; i < cart.length; i++ ) { %>
+      <%- cart[i].name %> --- <%- cart[i].price %> 円
+      <% if (cart[i].gazou && cart[i].gazou.length > 0) { %>
+        <img src="<%- '/images/' + cart[i].gazou %>" style="width: 80px; height: auto; border: 1px solid #000000;">
       <% } %>
-    </a><br />
+      <br />
+    <% } %>
   <% } %>
   <br />
-  <a href="shop_cartlook">カートを見る</a><br />
+  <input type="button" onclick="history.back()" value="戻る">
 </body>
 
 </html>

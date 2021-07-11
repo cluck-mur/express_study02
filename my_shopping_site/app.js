@@ -47,6 +47,7 @@ var productDeleteDoneRouter = require('./' + ProductConst.buildRoutePathForRequi
 var shopListRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_list'));
 var shopProductRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_product'));
 var shopCartinRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_cartin'));
+var shopCartlookRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_cartlook'));
 
 var app = express();
 
@@ -108,6 +109,7 @@ app.use('/product/pro_delete_done', productDeleteDoneRouter);
 app.use('/shop/shop_list', shopListRouter);
 app.use('/shop/shop_product', shopProductRouter);
 app.use('/shop/shop_cartin', shopCartinRouter);
+app.use('/shop/shop_cartlook', shopCartlookRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

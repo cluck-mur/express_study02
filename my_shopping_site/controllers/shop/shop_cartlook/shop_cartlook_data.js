@@ -2,20 +2,20 @@
 const crypto = require('crypto');
 const SuperShopData = require('../common/super_shop_data');
 
-module.exports = class ShopListData extends SuperShopData {
-    #shopProductList = null;
+module.exports = class ShopCartlookData extends SuperShopData {
+    #shopProductListInCart = null;
 
     /**
      * コンストラクター
      */
-    constructor(shopProductList) {
+    constructor(shopProductListInCart) {
         super();
 
-        this.#shopProductList = shopProductList;
+        this.#shopProductListInCart = shopProductListInCart;
     }
 
-    get shopProductList() {
-        return this.#shopProductList;
+    get shopProductListInCart() {
+        return this.#shopProductListInCart;
     }
 
     /**
@@ -32,7 +32,7 @@ module.exports = class ShopListData extends SuperShopData {
      */
     #makeObject() {
         return {
-            shopProductList: this.shopProductList,
+            cart: this.shopProductListInCart,
             sessionMemberLogin: this.sessionMemberLogin,
             sessionMemberName: this.sessionMemberName,
         };
