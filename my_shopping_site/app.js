@@ -48,6 +48,7 @@ var shopListRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_lis
 var shopProductRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_product'));
 var shopCartinRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_cartin'));
 var shopCartlookRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_cartlook'));
+var clearCartRouter = require('./' + ShopConst.buildRoutePathForRequire('clear_cart'));
 
 var app = express();
 
@@ -110,6 +111,7 @@ app.use('/shop/shop_list', shopListRouter);
 app.use('/shop/shop_product', shopProductRouter);
 app.use('/shop/shop_cartin', shopCartinRouter);
 app.use('/shop/shop_cartlook', shopCartlookRouter);
+app.use('/shop/clear_cart', clearCartRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
