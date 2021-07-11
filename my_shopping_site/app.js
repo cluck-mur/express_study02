@@ -7,6 +7,7 @@ var logger = require('morgan');
 var StaffLoginConst = require('./routes/staff_login/staff_login_const');
 var StaffConst = require('./routes/staff/staff_const');
 var ProductConst = require('./routes/product/pro_const');
+var ShopConst = require('./routes/shop/shop_const');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -42,6 +43,10 @@ var productEditCheckRouter = require('./' + ProductConst.buildRoutePathForRequir
 var productEditDoneRouter = require('./' + ProductConst.buildRoutePathForRequire('pro_edit_done'));
 var productDeleteRouter = require('./' + ProductConst.buildRoutePathForRequire('pro_delete'));
 var productDeleteDoneRouter = require('./' + ProductConst.buildRoutePathForRequire('pro_delete_done'));
+// shop 系
+var shopListRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_list'));
+var shopProductRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_product'));
+var shopCartinRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_cartin'));
 
 var app = express();
 
@@ -99,6 +104,10 @@ app.use('/product/pro_edit_check', productEditCheckRouter);
 app.use('/product/pro_edit_done', productEditDoneRouter);
 app.use('/product/pro_delete', productDeleteRouter);
 app.use('/product/pro_delete_done', productDeleteDoneRouter);
+// shop 系
+app.use('/shop/shop_list', shopListRouter);
+app.use('/shop/shop_product', shopProductRouter);
+app.use('/shop/shop_cartin', shopCartinRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

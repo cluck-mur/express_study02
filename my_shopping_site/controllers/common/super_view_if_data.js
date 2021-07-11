@@ -3,31 +3,15 @@ const crypto = require("crypto");
 
 
 module.exports = class SuperViewIfData {
-    #sessionLogin = false;
-    #sessionStaffName = null;
     #md5Pass = null;
 
     /**
      * コンストラクター
      */
     constructor() {
-        this.#sessionLogin = false;
-        this.#sessionStaffName = null;
         this.#md5Pass = null;
     }
 
-    get sessionLogin() {
-        return this.#sessionLogin;
-    }
-    set sessionLogin(setData) {
-        this.#sessionLogin = setData;
-    }
-    get sessionStaffName() {
-        return this.#sessionStaffName;
-    }
-    set sessionStaffName(setData) {
-        this.#sessionStaffName = setData;
-    }
     /**
      * ゲッター
      */

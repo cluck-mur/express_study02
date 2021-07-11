@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>ろくまる農園　ショップ　カート</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <% if (sessionMemberLogin) { %>
+    ようこそ <%- sessionMemberName %> 様 <a href="member_logout">ログアウト</a><br />
+  <% } else { %>
+    ようこそ ゲスト 様<a href="member_login" style="margin-left: 16pt;">会員ログイン</a><br />
+  <% } %>
+  <br />
+  <% cart.forEach( (value, key) => { %>
+    <%- value %><br />
+  <% }); %>
+  カートに追加しました。<br />
+  <br />
+  <a href="shop_list">商品一覧に戻る</a>
+</body>
+
+</html>

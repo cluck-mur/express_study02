@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>ろくまる農園　ショップ　<%- name %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <% if (sessionMemberLogin) { %>
+    ようこそ <%- sessionMemberName %> 様 <a href="member_logout">ログアウト</a><br />
+  <% } else { %>
+    ようこそ ゲスト 様<a href="member_login" style="margin-left: 16pt;">会員ログイン</a><br />
+  <% } %>
+  <br />
+  商品情報<br />
+  <br />
+  商品コード <br />
+  <%- code %><br />
+  商品名<br />
+  <%- name %><br />
+  価格<br />
+  <%- price %> 円<br />
+  <% if (gazou && gazou.length > 0) { %>
+    <img src="<%- '/images/' + gazou %>">
+  <% } %>
+  <br />
+  <a href="<%- `shop_cartin?procode=${code}` %>">カートに入れる</a><br />
+  <br />
+  <input type="button" onclick="history.back()" value="戻る">
+</body>
+
+</html>

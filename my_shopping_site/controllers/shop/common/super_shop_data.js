@@ -1,8 +1,8 @@
 "use strict";
 const crypto = require("crypto");
-const SuperStaffOnlyViewIfData = require('../../../controllers/common/super_staff_only_view_if_data');
+const SuperMemberOnlyViewIfData = require('../../common/super_member_only_view_if_data');
 
-module.exports = class SuperProductData extends SuperStaffOnlyViewIfData {
+module.exports = class SuperShopData extends SuperMemberOnlyViewIfData {
     /**
      * コンストラクター
      */
@@ -24,8 +24,8 @@ module.exports = class SuperProductData extends SuperStaffOnlyViewIfData {
      */
     #makeObject() {
         return {
-            sessionLogin: this.sessionLogin,
-            sessionStaffName: this.sessionStaffName,
+            sessionMemberLogin: this.sessionMemberLogin,
+            sessionMemberName: this.sessionMemberName,
         };
     }
 };
