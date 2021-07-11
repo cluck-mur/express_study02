@@ -41,12 +41,17 @@
       <br />
       <input type="hidden" name="max" value="<%- max %>">
       <input type="submit" value="数量変更"><br />
-    <% } else { %>
+      <input type="button" onclick="history.back()" value="戻る"><br />
+      <a href="shop_list">商品一覧に戻る</a><br />
+      <a href="shop_form.html">ご購入手続きへ進む</a><br />
+      <% } else { %>
       カートに商品は入っていません。<br />
       <br />
-    <% } %>
-    <input type="button" onclick="history.back()" value="戻る">
+      <input type="button" onclick="history.back()" value="戻る"><br />
+      <a href="shop_list">商品一覧に戻る</a>
+      <% } %>
   </form>
+  <br />
 </body>
 
 </html>
