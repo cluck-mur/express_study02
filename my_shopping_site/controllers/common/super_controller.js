@@ -17,11 +17,12 @@ module.exports = class SuperController {
      * @returns 
      */
     htmlspecialchars(req) {
-        let result = {
-            body: null,
-            file: null,
-        };
         if (req.method == 'POST') {
+            let result = {
+                body: null,
+                file: null,
+            };
+
             if (req.body) {
                 result.body = { ...req.body };
                 for (const [key, value] of Object.entries(req.body)) {
@@ -36,9 +37,26 @@ module.exports = class SuperController {
                     result.file[key] = sanitized;
                 }
             }
+
+            return result;
         }
 
-        return result;
+        if (req.method == 'GET') {
+            let result = {
+                query: null,
+            };
+
+            if (req.query) {
+                result.query = { ...req.query };
+                for (const [key, value] of Object.entries(req.query)) {
+                    let sanitized = this.#htmlspecialcharsSub(value);
+                    result.body[key] = sanitized;
+                }
+            }
+            
+            return result;
+        }
+
     }
 
     /**

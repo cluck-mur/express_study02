@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>ろくまる農園　ショップ　商品一覧</title>
+  <title>ろくまる農園　ショップ　カートの中身</title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 
@@ -13,18 +13,28 @@
     ようこそ ゲスト 様<a href="member_login" style="margin-left: 16pt;">会員ログイン</a><br />
   <% } %>
   <br />
-  商品一覧<br /><br />
-  <% if (cart && cart.length > 0) { %>
-    <% for (let i=0; i < cart.length; i++ ) { %>
-      <%- cart[i].name %> --- <%- cart[i].price %> 円
-      <% if (cart[i].gazou && cart[i].gazou.length > 0) { %>
-        <img src="<%- '/images/' + cart[i].gazou %>" style="width: 80px; height: auto; border: 1px solid #000000;">
-      <% } %>
+    <% if (cart && cart.length > 0) { %>
+      カートの中身<br /><br />
+      <form method="POST" action="kazu_change">
+        <% for (let i=0; i < cart.length; i++ ) { %>
+          <%- cart[i].name %>
+          <% if (cart[i].gazou && cart[i].gazou.length > 0) { %>
+            <img src="<%- '/images/' + cart[i].gazou %>" style="width: 80px; height: auto; border: 1px solid #000000;">
+          <% } %>
+          <%- cart[i].price %> 円
+          <input type="text" name="kazu<%- i %>" value="<%- cart[i].kazu %>">
+          <%- cart[i].price * cart[i].kazu %>円
+          <br />
+        <% } %>
+      <br />
+      <input type="hidden" name="max" value="<%- max %>">
+      <input type="submit" value="数量変更"><br />
+    <% } else { %>
+      カートに商品は入っていません。<br />
       <br />
     <% } %>
-  <% } %>
-  <br />
-  <input type="button" onclick="history.back()" value="戻る">
+    <input type="button" onclick="history.back()" value="戻る">
+  </form>
 </body>
 
 </html>

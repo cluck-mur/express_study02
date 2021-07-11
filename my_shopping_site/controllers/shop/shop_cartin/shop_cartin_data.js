@@ -4,18 +4,31 @@ const SuperShopData = require('../common/super_shop_data');
 
 module.exports = class ShopCartinData extends SuperShopData {
     #cart = null;
+    #kazu = null;
+    #max = null;
 
     /**
      * コンストラクター
      */
-    constructor(cart) {
+    constructor(cart, kazu) {
         super();
 
         this.#cart = cart;
+        this.#kazu = kazu;
+        this.#max = 0;
+        if (cart) {
+            this.#max = cart.length;
+        }
     }
 
     get cart() {
         return this.#cart;
+    }
+    get kazu() {
+        return this.#kazu;
+    }
+    get max() {
+        return this.#max;
     }
 
     /**
@@ -33,6 +46,8 @@ module.exports = class ShopCartinData extends SuperShopData {
     #makeObject() {
         return {
             cart: this.cart,
+            kazu: this.kazu,
+            max: this.max,
             sessionMemberLogin: this.sessionMemberLogin,
             sessionMemberName: this.sessionMemberName,
         };

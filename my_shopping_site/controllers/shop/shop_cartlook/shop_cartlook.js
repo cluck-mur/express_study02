@@ -35,6 +35,7 @@ module.exports = class ShopListController extends SuperShopController {
 
         // カートからデータを取得
         let cart = req.session.cart;
+        let kazu = req.session.kazu;
 
         //--
         // データベースから取得
@@ -47,7 +48,7 @@ module.exports = class ShopListController extends SuperShopController {
                     [Op.or]: whereOpin
                 }
             }).then((products) => {
-                let shopCartlookData = new ShopCartlookData(products);
+                let shopCartlookData = new ShopCartlookData(products, cart, kazu);
                 shopCartlookData.sessionLogin = sessionIsLogin;
                 shopCartlookData.sessionMemberName = sessionMemberName;
 
