@@ -24,10 +24,10 @@ module.exports = class ShopCartinController extends SuperShopController {
         // セッションIDを再生成
         this.sessionRegerateId(req, res);
         // セッションを確認
-        let sessionIsLogin = false;
+        let sessionMemberLogin = false;
         let sessionMemberName = null;
         if (req.session.member_login) {
-            sessionIsLogin = true;
+            sessionMemberLogin = true;
             sessionMemberName = req.session.member_name;
         }
 
@@ -48,7 +48,7 @@ module.exports = class ShopCartinController extends SuperShopController {
 
         // View I/Fを作成
         let shopCartinData = new ShopCartinData(req.session.cart, req.session.kazu, wasAddedToCart);
-        shopCartinData.sessionMemberLogin = sessionIsLogin;
+        shopCartinData.sessionMemberLogin = sessionMemberLogin;
         shopCartinData.sessionMemberName = sessionMemberName;
         let dataObject = shopCartinData.dataObject;
 

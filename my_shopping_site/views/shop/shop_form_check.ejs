@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ろくまる農園　ショップ　購入手続き</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <% let okFlg = true; %>
+    <% if (!onamae || onamae.length <= 0) { %>
+        お名前が入力されていません。<br/><br/>
+        <% okFlg = false; %>
+    <% } else { %>
+        お名前<br />
+        <%- onamae %><br />
+        <br />
+    <% } %>
+    <% if (!isEmailOk) { %>
+        メールアドレスを正確に入力してください。<br/><br/>
+    <% okFlg = false; %>
+    <% } else { %>
+        メールアドレス<br />
+        <%- email %><br />
+        <br />
+    <% } %>
+    <% if (!isPostal1Ok) { %>
+        郵便番号は半角数字で入力してください。<br/><br/>
+        <% okFlg = false; %>
+    <% } %>
+    <% if (!isPostal2Ok) { %>
+        郵便番号は半角数字で入力してください。<br/><br/>
+        <% okFlg = false; %>
+    <% } %>
+    <% if (isPostal1Ok && isPostal2Ok) { %>
+        郵便番号<br />
+        <%- postal1 + '-' + postal2 %><br />
+        <br />
+    <% } %>
+    <% if (!address || address.length <= 0) { %>
+        住所が入力されていません。<br/><br/>
+        <% okFlg = false; %>
+    <% } else { %>
+        住所<br />
+        <%- address %><br />
+        <br />
+    <% } %>
+    <% if (!isTelOk) { %>
+        電話番号を正確に入力してください。<br/><br/>
+        <% okFlg = false; %>
+    <% } else { %>
+        電話番号<br />
+        <%- tel %><br />
+        <br />
+    <% } %>
+
+    <% if (okFlg) { %>
+    <form method="POST" action="shop_form_done">
+        <input type="hidden" name="onamae" value="<%- onamae %>">
+        <input type="hidden" name="email" value="<%- email %>">
+        <input type="hidden" name="postal1" value="<%- postal1 %>">
+        <input type="hidden" name="postal2" value="<%- postal2 %>">
+        <input type="hidden" name="address" value="<%- address %>">
+        <input type="hidden" name="tel" value="<%- tel %>">
+        <input type="button" onclick="history.back()" value="戻る">
+        <input type="submit" value="OK"><br />
+    </form>
+    <% } else { %>
+    <form>
+        <input type="button" onclick="history.back()" value="戻る">
+    </form>
+    <% } %>
+</body>
+
+</html>

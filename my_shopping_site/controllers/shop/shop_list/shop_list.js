@@ -24,10 +24,10 @@ module.exports = class ShopListController extends SuperShopController {
         // セッションIDを再生成
         this.sessionRegerateId(req, res);
         // セッションを確認
-        let sessionIsLogin = false;
+        let sessionMemberLogin = false;
         let sessionMemberName = null;
         if (req.session.member_login) {
-            sessionIsLogin = true;
+            sessionMemberLogin = true;
             sessionMemberName = req.session.member_name;
         }
         //--
@@ -37,7 +37,7 @@ module.exports = class ShopListController extends SuperShopController {
             attributes: ['code', 'name', 'price', 'gazou']
         }).then((products) => {
             let shopListData = new ShopListData(products);
-            shopListData.sessionLogin = sessionIsLogin;
+            shopListData.sessionLogin = sessionMemberLogin;
             shopListData.sessionMemberName = sessionMemberName;
 
             let dataObject = shopListData.dataObject;

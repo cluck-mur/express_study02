@@ -26,10 +26,10 @@ module.exports = class ShopListController extends SuperShopController {
         // セッションIDを再生成
         this.sessionRegerateId(req, res);
         // セッションを確認
-        let sessionIsLogin = false;
+        let sessionMemberLogin = false;
         let sessionMemberName = null;
         if (req.session.member_login) {
-            sessionIsLogin = true;
+            sessionMemberLogin = true;
             sessionMemberName = req.session.member_name;
         }
 
@@ -49,7 +49,7 @@ module.exports = class ShopListController extends SuperShopController {
                 }
             }).then((products) => {
                 let shopCartlookData = new ShopCartlookData(products, cart, kazu);
-                shopCartlookData.sessionLogin = sessionIsLogin;
+                shopCartlookData.sessionLogin = sessionMemberLogin;
                 shopCartlookData.sessionMemberName = sessionMemberName;
 
                 let dataObject = shopCartlookData.dataObject;
@@ -61,7 +61,7 @@ module.exports = class ShopListController extends SuperShopController {
             });
         } else {
             let shopCartlookData = new ShopCartlookData(null);
-            shopCartlookData.sessionLogin = sessionIsLogin;
+            shopCartlookData.sessionLogin = sessionMemberLogin;
             shopCartlookData.sessionMemberName = sessionMemberName;
 
             let dataObject = shopCartlookData.dataObject;

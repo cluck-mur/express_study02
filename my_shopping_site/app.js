@@ -50,6 +50,7 @@ var shopCartinRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_c
 var shopCartlookRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_cartlook'));
 var clearCartRouter = require('./' + ShopConst.buildRoutePathForRequire('clear_cart'));
 var kazuChangeRouter = require('./' + ShopConst.buildRoutePathForRequire('kazu_change'));
+var shopFormCheckRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_form_check'));
 
 var app = express();
 
@@ -114,6 +115,7 @@ app.use('/shop/shop_cartin', shopCartinRouter);
 app.use('/shop/shop_cartlook', shopCartlookRouter);
 app.use('/shop/clear_cart', clearCartRouter);
 app.use('/shop/kazu_change', kazuChangeRouter);
+app.use('/shop/shop_form_check', shopFormCheckRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
