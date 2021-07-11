@@ -6,11 +6,12 @@ module.exports = class ShopCartinData extends SuperShopData {
     #cart = null;
     #kazu = null;
     #max = null;
+    #wasAddedToCart = false;
 
     /**
      * コンストラクター
      */
-    constructor(cart, kazu) {
+    constructor(cart, kazu, wasAddedToCart) {
         super();
 
         this.#cart = cart;
@@ -19,6 +20,7 @@ module.exports = class ShopCartinData extends SuperShopData {
         if (cart) {
             this.#max = cart.length;
         }
+        this.#wasAddedToCart = wasAddedToCart;
     }
 
     get cart() {
@@ -29,6 +31,9 @@ module.exports = class ShopCartinData extends SuperShopData {
     }
     get max() {
         return this.#max;
+    }
+    get wasAddedToCart() {
+        return this.#wasAddedToCart;
     }
 
     /**
@@ -45,6 +50,7 @@ module.exports = class ShopCartinData extends SuperShopData {
      */
     #makeObject() {
         return {
+            wasAddedToCart: this.wasAddedToCart,
             cart: this.cart,
             kazu: this.kazu,
             max: this.max,

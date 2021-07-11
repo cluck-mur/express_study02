@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>ろくまる農園　ショップ　数量変更</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <% if (!isKazuOk) { %>
+    数量に誤りがあります。<br />
+  <% } %>
+  <% if (!isKazuRangeOk) { %>
+    数量は必ず1個以上、10個までです。<br />
+  <% } %>
+  <br />
+  <a href="shop_cartlook">カートに戻る</a>
+
+</body>
+
+</html>

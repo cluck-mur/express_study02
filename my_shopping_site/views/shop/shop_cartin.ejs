@@ -13,10 +13,14 @@
     ようこそ ゲスト 様<a href="member_login" style="margin-left: 16pt;">会員ログイン</a><br />
   <% } %>
   <br />
-  <% cart.forEach( (value, key) => { %>
-    <%- value %><br />
-  <% }); %>
-  カートに追加しました。<br />
+  <% if (wasAddedToCart) { %>
+    <% cart.forEach( (value, key) => { %>
+      <%- value %><br />
+    <% }); %>
+    カートに追加しました。<br />
+  <% } else { %>
+    その商品はすでにカートに入っています。<br />
+  <% } %>
   <br />
   <a href="shop_list">商品一覧に戻る</a>
 </body>

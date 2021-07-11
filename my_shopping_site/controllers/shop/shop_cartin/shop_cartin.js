@@ -39,11 +39,15 @@ module.exports = class ShopCartinController extends SuperShopController {
         if (!req.session.kazu) {
             req.session.kazu = [];
         }
-        req.session.cart.push(productCode);
-        req.session.kazu.push(1);
+        let wasAddedToCart = false;
+        if (!req.session.cart.includes(productCode)) {
+            req.session.cart.push(productCode);
+            req.session.kazu.push(1);
+            wasAddedToCart = true;
+        }
 
         // View I/Fを作成
-        let shopCartinData = new ShopCartinData( req.session.cart, req.session.kazu );
+        let shopCartinData = new ShopCartinData(req.session.cart, req.session.kazu, wasAddedToCart);
         shopCartinData.sessionMemberLogin = sessionIsLogin;
         shopCartinData.sessionMemberName = sessionMemberName;
         let dataObject = shopCartinData.dataObject;
