@@ -32,14 +32,22 @@ module.exports = class KazuChangeController extends SuperShopController {
         // セキュリティ対策
         let sanitized = this.htmlspecialchars(req);
 
+        // 数変更対応
         let max = sanitized.body.max;
-        let kazu = [];
+        // let kazu = [];
         if (max && max > 0) {
-            for (let i=0; i<max; i++) {
-                kazu.push(sanitized.body[`kazu${i}`]); 
+            for (let i = max - 1; i >= 0; i--) {
+                if (sanitized.body[`sakujyo${i}`] && sanitized.body[`sakujyo${i}`] == 'on') {
+                    req.session.cart.splice(i, 1);
+                    req.session.kazu.splice(i, 1);
+                } else {
+                    // kazu.push(sanitized.body[`kazu${i}`]); 
+                    req.session.kazu[i] = sanitized.body[`kazu${i}`];
+                }
             }
         }
-        req.session.kazu = kazu;
+        // req.session.kazu = kazu;
+
 
         res.redirect('shop_cartlook');
     }
