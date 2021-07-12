@@ -24,7 +24,13 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    date: DataTypes.DATE,
+    // date: DataTypes.DATE,
+    date: {
+      type: 'TIMESTAMP',
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      // defaultValue: "DATETIME('now','localtime')",
+      allowNull: false
+    },
     code_member: DataTypes.INTEGER,
     name: DataTypes.STRING(datSalesConst.NAME_LENGTH),
     email: DataTypes.STRING(datSalesConst.EMAIL_LENGTH),

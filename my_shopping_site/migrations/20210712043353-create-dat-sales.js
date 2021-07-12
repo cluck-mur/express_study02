@@ -17,7 +17,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       date: {
-        type: Sequelize.DATE
+        type: 'TIMESTAMP',
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        // defaultValue: "DATETIME('now','localtime')",
+        allowNull: false
       },
       code_member: {
         type: Sequelize.INTEGER
