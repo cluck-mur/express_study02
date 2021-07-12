@@ -1,4 +1,4 @@
-module.exports = new class MstStaffConst {
+module.exports = new class MstProductConst {
     #NAME_LENGTH = 0;
     #GAZOU_LENGTH = 0;
     constructor() {

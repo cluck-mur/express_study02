@@ -51,6 +51,8 @@ module.exports = class ShopFormDoneController extends SuperShopController {
                     [Op.or]: whereOpin
                 }
             }).then((products) => {
+                db.sequelize.close();
+
                 let shopFormDoneData = new ShopFormDoneData(
                     products,
                     cart,
@@ -68,12 +70,63 @@ module.exports = class ShopFormDoneController extends SuperShopController {
                 let dataObject = shopFormDoneData.dataObject;
 
                 //
-                // メール送信
+                // DBに注文データを保存する
                 //
-                this._sendMail(dataObject);
+                db.dat_sales.create({
+                    code_member: 0,
+                    name: dataObject.onamae,
+                    email: dataObject.email,
+                    postal1: dataObject.postal1,
+                    postal2: dataObject.postal2,
+                    address: dataObject.address,
+                    tel: dataObject.tel
+                }).then((result) => {
+                    db.sequelize.close();
+                    let lastcode = result.code;
 
-                // Viewへ
-                res.render(ShopConst.buildViewPath('shop_form_done'), dataObject);
+                    let tmp_code_member = result.code_member;
+                    let tmp_name = result.name;
+                    let tmp_email = result.email;
+                    let tmp_postal1 = result.postal1;
+                    let tmp_postal2 = result.postal2;
+                    let tmp_address = result.address;
+                    let tmp_tel = result.tel;
+
+                    let createRecordData = [];
+                    for (let i = 0; i < dataObject.cart.length; i++) {
+                        let recordObject = {
+                            code_sales: lastcode,
+                            code_product: dataObject.cart[i].code,
+                            price: dataObject.cart[i].price,
+                            quantity: dataObject.cart[i].kazu
+                        }
+                        createRecordData.push(recordObject);
+                    }
+
+                    //
+                    // DBに注文明細を保存する
+                    //
+                    db.dat_sales_product.bulkCreate(createRecordData)
+                        .then((result) => {
+                            db.sequelize.close();
+
+                            //
+                            // メール送信
+                            //
+                            this._sendMail(dataObject);
+
+                            // Viewへ
+                            res.render(ShopConst.buildViewPath('shop_form_done'), dataObject);
+                        }).catch((e) => {
+                            // console.log(e);
+                            // next();
+                            res.send('ただいま障害により大変ご迷惑をお掛けしております。');
+                        });
+                }).catch((e) => {
+                    // console.log(e);
+                    // next();
+                    res.send('ただいま障害により大変ご迷惑をお掛けしております。');
+                });
             }).catch((e) => {
                 // console.log(e);
                 // next();
