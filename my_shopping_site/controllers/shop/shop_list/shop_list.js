@@ -37,7 +37,7 @@ module.exports = class ShopListController extends SuperShopController {
             attributes: ['code', 'name', 'price', 'gazou']
         }).then((products) => {
             let shopListData = new ShopListData(products);
-            shopListData.sessionLogin = sessionMemberLogin;
+            shopListData.sessionMemberLogin = sessionMemberLogin;
             shopListData.sessionMemberName = sessionMemberName;
 
             let dataObject = shopListData.dataObject;

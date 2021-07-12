@@ -3,18 +3,18 @@ const crypto = require('crypto');
 const SuperShopData = require('../common/super_shop_data');
 
 module.exports = class ShopFormCheckData extends SuperShopData {
-    #onamae = null;
-    #email = null;
-    #postal1 = null;
-    #postal2 = null;
-    #address = null;
-    #tel = null;
+    _onamae = null;
+    _email = null;
+    _postal1 = null;
+    _postal2 = null;
+    _address = null;
+    _tel = null;
 
-    // #isOnamaeOk = false;
-    #isEmailOk = false;
-    #isPostal1Ok = false;
-    #isPostal2Ok = false;
-    #isTelOk = false;
+    // _isOnamaeOk = false;
+    _isEmailOk = false;
+    _isPostal1Ok = false;
+    _isPostal2Ok = false;
+    _isTelOk = false;
 
     /**
      * コンストラクター
@@ -22,82 +22,82 @@ module.exports = class ShopFormCheckData extends SuperShopData {
     constructor(onamae, email, postal1, postal2, address, tel) {
         super();
 
-        this.#onamae = onamae;
-        this.#email = email;
-        this.#postal1 = postal1;
-        this.#postal2 = postal2;
-        this.#address = address;
-        this.#tel = tel;
+        this._onamae = onamae;
+        this._email = email;
+        this._postal1 = postal1;
+        this._postal2 = postal2;
+        this._address = address;
+        this._tel = tel;
 
-        this.#isEmailOk = false;
-        this.#isPostal1Ok = false;
-        this.#isPostal2Ok = false;
-        this.#isTelOk = false;
+        this._isEmailOk = false;
+        this._isPostal1Ok = false;
+        this._isPostal2Ok = false;
+        this._isTelOk = false;
     }
 
     get onamae() {
-        return this.#onamae;
+        return this._onamae;
     }
     get email() {
-        return this.#email;
+        return this._email;
     }
     get postal1() {
-        return this.#postal1;
+        return this._postal1;
     }
     get postal2() {
-        return this.#postal2;
+        return this._postal2;
     }
     get address() {
-        return this.#address;
+        return this._address;
     }
     get tel() {
-        return this.#tel;
+        return this._tel;
     }
 
     // get isOnamaeOk() {
-    //     return this.#isOnamaeOk;
+    //     return this._isOnamaeOk;
     // }
     // set isOnamaeOk(isOnamaeOk) {
-    //     this.#isOnamaeOk = isOnamaeOk;
+    //     this._isOnamaeOk = isOnamaeOk;
     // }
     get isEmailOk() {
-        return this.#isEmailOk;
+        return this._isEmailOk;
     }
     set isEmailOk(isEmailOk) {
-        this.#isEmailOk = isEmailOk;
+        this._isEmailOk = isEmailOk;
     }
     get isPostal1Ok() {
-        return this.#isPostal1Ok;
+        return this._isPostal1Ok;
     }
     set isPostal1Ok(isPostal1Ok) {
-        this.#isPostal1Ok = isPostal1Ok;
+        this._isPostal1Ok = isPostal1Ok;
     }
     get isPostal2Ok() {
-        return this.#isPostal2Ok;
+        return this._isPostal2Ok;
     }
     set isPostal2Ok(isPostal2Ok) {
-        this.#isPostal2Ok = isPostal2Ok;
+        this._isPostal2Ok = isPostal2Ok;
     }
     get isTelOk() {
-        return this.#isTelOk;
+        return this._isTelOk;
     }
     set isTelOk(isTelOk) {
-        this.#isTelOk = isTelOk;
+        this._isTelOk = isTelOk;
     }
 
     /**
      * 
      */
     get dataObject() {
-        // console.log(this.#makeObject());
-        return this.#makeObject();
+        // console.log(this._makeObject());
+        return this._makeObject();
     }
 
     /**
      * 
      * @returns 
      */
-    #makeObject() {
+    _makeObject() {
         return {
             onamae: this.onamae,
             email: this.email,

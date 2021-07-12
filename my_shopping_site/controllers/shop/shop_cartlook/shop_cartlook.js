@@ -7,7 +7,7 @@ const ShopCartlookData = require('./shop_cartlook_data');
 const ControllerConst = require('../../common/controller_const');
 const SuperShopController = require('../common/super_shop_controller');
 
-module.exports = class ShopListController extends SuperShopController {
+module.exports = class CartLookController extends SuperShopController {
     /**
      * constructor
      * コンストラクタ
@@ -41,7 +41,7 @@ module.exports = class ShopListController extends SuperShopController {
         // データベースから取得
         //--
         if (cart) {
-            let whereOpin = this.#makeOpWhereOr(cart);
+            let whereOpin = this._makeOpWhereOrCode(cart);
             db.mst_product.findAll({
                 attributes: ['code', 'name', 'price', 'gazou'],
                 where: {
@@ -49,7 +49,7 @@ module.exports = class ShopListController extends SuperShopController {
                 }
             }).then((products) => {
                 let shopCartlookData = new ShopCartlookData(products, cart, kazu);
-                shopCartlookData.sessionLogin = sessionMemberLogin;
+                shopCartlookData.sessionMemberLogin = sessionMemberLogin;
                 shopCartlookData.sessionMemberName = sessionMemberName;
 
                 let dataObject = shopCartlookData.dataObject;
@@ -61,7 +61,7 @@ module.exports = class ShopListController extends SuperShopController {
             });
         } else {
             let shopCartlookData = new ShopCartlookData(null);
-            shopCartlookData.sessionLogin = sessionMemberLogin;
+            shopCartlookData.sessionMemberLogin = sessionMemberLogin;
             shopCartlookData.sessionMemberName = sessionMemberName;
 
             let dataObject = shopCartlookData.dataObject;
@@ -69,17 +69,17 @@ module.exports = class ShopListController extends SuperShopController {
         }
     }
 
-    /**
-     * 
-     * @param {*} cart 
-     * @returns 
-     */
-    #makeOpWhereOr(cart) {
-        let op = [];
-        cart.forEach((value, key) => {
-            let pushObj = { code: value };
-            op.push(pushObj);
-        });
-        return op;
-    }
+    // /**
+    //  * 
+    //  * @param {*} cart 
+    //  * @returns 
+    //  */
+    // _makeOpWhereOr(cart) {
+    //     let op = [];
+    //     cart.forEach((value, key) => {
+    //         let pushObj = { code: value };
+    //         op.push(pushObj);
+    //     });
+    //     return op;
+    // }
 }

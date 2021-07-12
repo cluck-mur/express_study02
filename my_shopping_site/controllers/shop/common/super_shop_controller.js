@@ -34,4 +34,18 @@ module.exports = class SuperShopController extends SuperController{
     sessionRegerateId(req, res) {
         session_regerate_id(req, res);
     }
+
+    /**
+     * 
+     * @param {*} cart 
+     * @returns 
+     */
+     _makeOpWhereOrCode(cart) {
+        let op = [];
+        cart.forEach((value, key) => {
+            let pushObj = { code: value };
+            op.push(pushObj);
+        });
+        return op;
+    }
 }

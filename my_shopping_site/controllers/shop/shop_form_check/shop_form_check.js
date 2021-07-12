@@ -40,7 +40,7 @@ module.exports = class ShopFormCheckController extends SuperShopController {
         let isPostal2Ok = sanitized.body.postal2.match('^[0-9]+$');
         let isTelOk = sanitized.body.tel.match('^0([0-9]-[0-9]{4}|[0-9]{2}-[0-9]{3}|[0-9]{3}-[0-9]{2}|[0-9]{4}-[0-9])-[0-9]{4}$');
 
-        let shopListData = new ShopFormCheckData(
+        let shopFormCheckData = new ShopFormCheckData(
             sanitized.body.onamae,
             sanitized.body.email,
             sanitized.body.postal1,
@@ -48,14 +48,14 @@ module.exports = class ShopFormCheckController extends SuperShopController {
             sanitized.body.address,
             sanitized.body.tel
         );
-        shopListData.isEmailOk = isEmailOk;
-        shopListData.isPostal1Ok = isPostal1Ok;
-        shopListData.isPostal2Ok = isPostal2Ok;
-        shopListData.isTelOk = isTelOk;
-        shopListData.sessionMemberLogin = sessionMemberLogin;
-        shopListData.sessionMemberName = sessionMemberName;
+        shopFormCheckData.isEmailOk = isEmailOk;
+        shopFormCheckData.isPostal1Ok = isPostal1Ok;
+        shopFormCheckData.isPostal2Ok = isPostal2Ok;
+        shopFormCheckData.isTelOk = isTelOk;
+        shopFormCheckData.sessionMemberLogin = sessionMemberLogin;
+        shopFormCheckData.sessionMemberName = sessionMemberName;
 
-        let dataObject = shopListData.dataObject;
+        let dataObject = shopFormCheckData.dataObject;
         res.render(ShopConst.buildViewPath('shop_form_check'), dataObject);
     }
 }
