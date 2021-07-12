@@ -1,4 +1,5 @@
 'use strict';
+const Sequelize = require('sequelize');
 const datSalesConst = require('./../common/db_const/dat_sales_const');
 
 const {
@@ -16,7 +17,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   dat_sales.init({
-    code: DataTypes.INTEGER,
+    // code: DataTypes.INTEGER,
+    code: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: Sequelize.INTEGER
+    },
     date: DataTypes.DATE,
     code_member: DataTypes.INTEGER,
     name: DataTypes.STRING(datSalesConst.NAME_LENGTH),

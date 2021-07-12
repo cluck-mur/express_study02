@@ -15,12 +15,20 @@
     -次のコマンドを実行しデータをDBへ投入
         $> sequelize db:seed:all
 
-////// うまくいかないので、DBは手動で設定、モデルをsequelize-autoで作る
-・DBファイルを作成（テーブルも設定）
-・sequelize-autoでモデルを作成
-    $> D:
-    $> cd \work\develop\express\express_study02\my_shopping_site
-    $> sequelize-auto -o "./models" -d "./data/development.sqlite3" -h "127.0.0.1" -u "root" -e sqlite
+・sequelizeに関するその他のこと（オプションなど）
+    -freezeTableName: true,  //テーブル名をモデルと同じにする
+    -timestamps: false,  //タイムスタンプカラム(updatedAt, createdAt)を使用しない
+    -dat_sales.removeAttribute('id');  // 'id'カラムを定義から削除
+    -create()のコールバックで主キーを取得したいときはモデルに手動で設定が必要
+            code: {
+                allowNull: false,
+                autoIncrement: true,
+                primaryKey: true,
+                type: Sequelize.INTEGER
+            },
+    -トランザクションを使うときにはロックについて検討が必要（楽観的ロック／悲観的ロック）
+
+
 
 --- コーディング開始（気づけばプロ並み_PHP_改訂版 に従いコーディング）
 ・気づけばプロ並み_PHP_改訂版 2-2 スタッフを追加する画面を作ろう！ 完了
@@ -47,5 +55,6 @@
 ・気づけばプロ並み_PHP_改訂版 7-1 注文フォームの画面を作ろう！　完了
 ・気づけばプロ並み_PHP_改訂版 7-2 注文チェックの画面を作ろう！　完了
 ・気づけばプロ並み_PHP_改訂版 7-3 注文登録の画面を作ろう！　完了
-・気づけばプロ並み_PHP_改訂版 7-3 注文情報をデータベースに追加しよう！
+・気づけばプロ並み_PHP_改訂版 7-3 注文情報をデータベースに追加しよう！　完了
+・気づけばプロ並み_PHP_改訂版 8-1 注文データを日付で選べるようにしよう！
 ・

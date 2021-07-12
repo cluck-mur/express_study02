@@ -51,8 +51,6 @@ module.exports = class ShopFormDoneController extends SuperShopController {
                     [Op.or]: whereOpin
                 }
             }).then((products) => {
-                db.sequelize.close();
-
                 let shopFormDoneData = new ShopFormDoneData(
                     products,
                     cart,
@@ -72,25 +70,21 @@ module.exports = class ShopFormDoneController extends SuperShopController {
                 //
                 // DBに注文データを保存する
                 //
-                db.dat_sales.create({
-                    code_member: 0,
-                    name: dataObject.onamae,
-                    email: dataObject.email,
-                    postal1: dataObject.postal1,
-                    postal2: dataObject.postal2,
-                    address: dataObject.address,
-                    tel: dataObject.tel
-                }).then((result) => {
-                    db.sequelize.close();
+                db.dat_sales.create(
+                    {
+                        code_member: 0,
+                        name: dataObject.onamae,
+                        email: dataObject.email,
+                        postal1: dataObject.postal1,
+                        postal2: dataObject.postal2,
+                        address: dataObject.address,
+                        tel: dataObject.tel
+                    },
+                    {
+                        returning: true
+                    }
+                ).then((result) => {
                     let lastcode = result.code;
-
-                    let tmp_code_member = result.code_member;
-                    let tmp_name = result.name;
-                    let tmp_email = result.email;
-                    let tmp_postal1 = result.postal1;
-                    let tmp_postal2 = result.postal2;
-                    let tmp_address = result.address;
-                    let tmp_tel = result.tel;
 
                     let createRecordData = [];
                     for (let i = 0; i < dataObject.cart.length; i++) {
@@ -108,12 +102,20 @@ module.exports = class ShopFormDoneController extends SuperShopController {
                     //
                     db.dat_sales_product.bulkCreate(createRecordData)
                         .then((result) => {
-                            db.sequelize.close();
-
                             //
                             // メール送信
                             //
                             this._sendMail(dataObject);
+
+                            //
+                            // カートを空にする
+                            //
+                            if (req.session.cart) {
+                                req.session.cart = null;
+                            }
+                            if (req.session.kazu) {
+                                req.session.kazu = null;
+                            }
 
                             // Viewへ
                             res.render(ShopConst.buildViewPath('shop_form_done'), dataObject);
