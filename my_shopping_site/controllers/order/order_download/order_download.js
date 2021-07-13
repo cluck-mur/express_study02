@@ -1,6 +1,6 @@
 'use strict'
 const OrderConst = require('../common/order_const');
-const SuperOrderData = require('../common/super_order_data');
+const OrderDownloadData = require('./order_download_data');
 const ControllerConst = require('../../common/controller_const');
 const SuperOrderController = require('../common/super_order_controller');
 
@@ -24,12 +24,12 @@ module.exports = class OrderDownloadController extends SuperOrderController {
         this.sessionRegerateId(req, res);
         // セッションを確認
         if (req.session.login) {
-            let superOrderData = new SuperOrderData();
-            superOrderData.sessionLogin = true;
-            superOrderData.sessionStaffName = req.session.staff_name;
+            let orderDownloadData = new OrderDownloadData();
+            orderDownloadData.sessionLogin = true;
+            orderDownloadData.sessionStaffName = req.session.staff_name;
 
             // 画面表示
-            let dataObject = superOrderData.dataObject;
+            let dataObject = orderDownloadData.dataObject;
             res.render(OrderConst.buildViewPath('order_download'), dataObject);
         } else {
             // NG画面にリダイレクト
