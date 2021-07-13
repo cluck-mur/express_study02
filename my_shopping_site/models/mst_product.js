@@ -13,10 +13,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.mst_product.hasMany(models.dat_sales_product, { foreignKey: 'code_product' });
     }
   };
   mst_product.init({
-    code: DataTypes.INTEGER,
+    code: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     name: DataTypes.STRING(mstProductConst.NAME_LENGTH),
     price: DataTypes.INTEGER,
     gazou: DataTypes.STRING(mstProductConst.GAZOU_LENGTH)
@@ -27,5 +33,6 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,  //タイムスタンプカラム(updatedAt, createdAt)を使用しない
   });
   mst_product.removeAttribute('id');  // 'id'カラムを定義から削除
+  mst_product.sync();
   return mst_product;
 };

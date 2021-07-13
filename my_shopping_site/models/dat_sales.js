@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      dat_sales.hasMany(models.dat_sales_product, { foreignKey: 'code_sales' });
+      models.dat_sales.hasMany(models.dat_sales_product, { foreignKey: 'code_sales' });
     }
   };
   dat_sales.init({
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     // date: DataTypes.DATE,
     date: {
@@ -46,5 +46,6 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,  //タイムスタンプカラム(updatedAt, createdAt)を使用しない
   });
   dat_sales.removeAttribute('id');  // 'id'カラムを定義から削除
+  dat_sales.sync();
   return dat_sales;
 };

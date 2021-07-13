@@ -4,38 +4,44 @@ const SuperOrderData = require('../common/super_order_data');
 
 module.exports = class OrderDownloadDoneData extends SuperOrderData {
     _orderList = null;
+    _filePath = null;
 
     /**
      * コンストラクター
      */
-    constructor(queryResult) {
+    constructor(queryResult, filePath) {
         super();
 
         this._orderList = [];
         queryResult.forEach((element) => {
-            // element.dat_sales_products.forEach((dsp_element) => {
-            //     });
-            this._orderList.push({
-                code: element.code,
-                date: element.date,
-                date: element.code_member,
-                name: element.name,
-                email: element.email,
-                postal1: element.postal1,
-                postal2: element.postal2,
-                address: element.address,
-                tel: element.tel,
-                code_product: element.dat_sales_products[0].code,
-                mst_product_name: '',
-                price: element.dat_sales_products[0].price,
-                quantity: element.dat_sales_products[0].quantity
+            element.dat_sales_products.forEach((dat_sales_product) => {
+                this._orderList.push({
+                    code: element.code,
+                    date: element.date,
+                    code_member: element.code_member,
+                    name: element.name,
+                    email: element.email,
+                    postal1: element.postal1,
+                    postal2: element.postal2,
+                    address: element.address,
+                    tel: element.tel,
+                    code_product: dat_sales_product.code,
+                    mst_product_name: dat_sales_product.mst_product.name,
+                    price: dat_sales_product.price,
+                    quantity: dat_sales_product.quantity
+                });
             });
         });
-        // this.#productList = productList;
+
+        this._filePath = filePath;
+        // console.log(this._orderList);
     }
 
     get orderList() {
         return this._orderList;
+    }
+    get filePath() {
+        return this._filePath;
     }
 
     /**
@@ -53,6 +59,7 @@ module.exports = class OrderDownloadDoneData extends SuperOrderData {
     #makeObject() {
         return {
             orderList: this.orderList,
+            filePath: this.filePath,
             sessionLogin: this.sessionLogin,
             sessionStaffName: this.sessionStaffName,
         };

@@ -16,7 +16,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   mst_staff.init({
-    code: DataTypes.INTEGER,
+    code: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     name: DataTypes.STRING(mstStaffConst.NAME_LENGTH),
     password: DataTypes.STRING(mstStaffConst.PASSWORD_LENGTH)
   }, {
@@ -26,5 +31,6 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,  //タイムスタンプカラム(updatedAt, createdAt)を使用しない
   });
   mst_staff.removeAttribute('id');  // 'id'カラムを定義から削除
+  mst_staff.sync();
   return mst_staff;
 };
