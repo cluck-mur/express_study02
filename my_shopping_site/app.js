@@ -8,6 +8,7 @@ var StaffLoginConst = require('./routes/staff_login/staff_login_const');
 var StaffConst = require('./routes/staff/staff_const');
 var ProductConst = require('./routes/product/pro_const');
 var ShopConst = require('./routes/shop/shop_const');
+var OrderConst = require('./routes/order/order_const');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -43,6 +44,8 @@ var productEditCheckRouter = require('./' + ProductConst.buildRoutePathForRequir
 var productEditDoneRouter = require('./' + ProductConst.buildRoutePathForRequire('pro_edit_done'));
 var productDeleteRouter = require('./' + ProductConst.buildRoutePathForRequire('pro_delete'));
 var productDeleteDoneRouter = require('./' + ProductConst.buildRoutePathForRequire('pro_delete_done'));
+// order 系
+var orderDownloadRouter = require('./' + OrderConst.buildRoutePathForRequire('order_download'));
 // shop 系
 var shopListRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_list'));
 var shopProductRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_product'));
@@ -109,6 +112,8 @@ app.use('/product/pro_edit_check', productEditCheckRouter);
 app.use('/product/pro_edit_done', productEditDoneRouter);
 app.use('/product/pro_delete', productDeleteRouter);
 app.use('/product/pro_delete_done', productDeleteDoneRouter);
+// order 系
+app.use('/order/order_download', orderDownloadRouter);
 // shop 系
 app.use('/shop/shop_list', shopListRouter);
 app.use('/shop/shop_product', shopProductRouter);
