@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      dat_sales.hasMany(models.dat_sales_product, { foreignKey: 'code_sales' });
     }
   };
   dat_sales.init({

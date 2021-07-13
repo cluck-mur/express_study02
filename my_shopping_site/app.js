@@ -46,6 +46,7 @@ var productDeleteRouter = require('./' + ProductConst.buildRoutePathForRequire('
 var productDeleteDoneRouter = require('./' + ProductConst.buildRoutePathForRequire('pro_delete_done'));
 // order 系
 var orderDownloadRouter = require('./' + OrderConst.buildRoutePathForRequire('order_download'));
+var orderDownloadDoneRouter = require('./' + OrderConst.buildRoutePathForRequire('order_download_done'));
 // shop 系
 var shopListRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_list'));
 var shopProductRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_product'));
@@ -114,6 +115,7 @@ app.use('/product/pro_delete', productDeleteRouter);
 app.use('/product/pro_delete_done', productDeleteDoneRouter);
 // order 系
 app.use('/order/order_download', orderDownloadRouter);
+app.use('/order/order_download_done', orderDownloadDoneRouter);
 // shop 系
 app.use('/shop/shop_list', shopListRouter);
 app.use('/shop/shop_product', shopProductRouter);
