@@ -16,10 +16,31 @@ module.exports = class ShopFormCheckData extends SuperShopData {
     _isPostal2Ok = false;
     _isTelOk = false;
 
+    _chumon = null;
+    _pass = null;
+    _pass2 = null;
+    _danjo = null;
+    _birth = null;
+
+    _isPassInputOk = false;
+    _isPassCompareOk = false;
+
     /**
      * コンストラクター
      */
-    constructor(onamae, email, postal1, postal2, address, tel) {
+    constructor(
+        onamae,
+        email,
+        postal1,
+        postal2,
+        address,
+        tel,
+        chumon,
+        pass,
+        pass2,
+        danjo,
+        birth
+    ) {
         super();
 
         this._onamae = onamae;
@@ -29,10 +50,19 @@ module.exports = class ShopFormCheckData extends SuperShopData {
         this._address = address;
         this._tel = tel;
 
+        this._chumon = chumon;
+        this._pass = pass;
+        this._pass2 = pass2;
+        this._danjo = danjo;
+        this._birth = birth;
+
         this._isEmailOk = false;
         this._isPostal1Ok = false;
         this._isPostal2Ok = false;
         this._isTelOk = false;
+
+        this._isPassInputOk = false;
+        this._isPassCompareOk = false;
     }
 
     get onamae() {
@@ -53,7 +83,21 @@ module.exports = class ShopFormCheckData extends SuperShopData {
     get tel() {
         return this._tel;
     }
-
+    get chumon() {
+        return this._chumon;
+    }
+    get pass() {
+        return this._pass;
+    }
+    get pass2() {
+        return this._pass2;
+    }
+    get danjo() {
+        return this._danjo;
+    }
+    get birth() {
+        return this._birth;
+    }
     // get isOnamaeOk() {
     //     return this._isOnamaeOk;
     // }
@@ -84,6 +128,18 @@ module.exports = class ShopFormCheckData extends SuperShopData {
     set isTelOk(isTelOk) {
         this._isTelOk = isTelOk;
     }
+    get isPassInputOk() {
+        return this._isPassInputOk;
+    }
+    set isPassInputOk(isPassInputOk) {
+        this._isPassInputOk = isPassInputOk;
+    }
+    get isPassCompareOk() {
+        return this._isPassCompareOk;
+    }
+    set isPassCompareOk(isPassCompareOk) {
+        this._isPassCompareOk = isPassCompareOk;
+    }
 
     /**
      * 
@@ -105,11 +161,18 @@ module.exports = class ShopFormCheckData extends SuperShopData {
             postal2: this.postal2,
             address: this.address,
             tel: this.tel,
+            chumon: this.chumon,
+            pass: this.pass,
+            pass2: this.pass2,
+            danjo: this.danjo,
+            birth: this.birth,
             isOnamaeOk: this.isOnamaeOk,
             isEmailOk: this.isEmailOk,
             isPostal1Ok: this.isPostal1Ok,
             isPostal2Ok: this.isPostal2Ok,
             isTelOk: this.isTelOk,
+            isPassInputOk: this.isPassInputOk,
+            isPassCompareOk: this.isPassCompareOk,
             sessionMemberLogin: this.sessionMemberLogin,
             sessionMemberName: this.sessionMemberName,
         };

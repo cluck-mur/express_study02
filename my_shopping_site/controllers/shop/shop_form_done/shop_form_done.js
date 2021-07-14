@@ -60,75 +60,53 @@ module.exports = class ShopFormDoneController extends SuperShopController {
                     sanitized.body.postal1,
                     sanitized.body.postal2,
                     sanitized.body.address,
-                    sanitized.body.tel
+                    sanitized.body.tel,
+                    sanitized.body.chumon,
+                    sanitized.body.pass,
+                    sanitized.body.danjo,
+                    sanitized.body.birth
                 );
                 shopFormDoneData.sessionMemberLogin = sessionMemberLogin;
                 shopFormDoneData.sessionMemberName = sessionMemberName;
 
                 let dataObject = shopFormDoneData.dataObject;
 
-                //
-                // DBに注文データを保存する
-                //
-                db.dat_sales.create(
-                    {
-                        code_member: 0,
+                if (sanitized.body.chumon == 'chumontouroku') {
+                    let danjo = null;
+                    if (dataObject.danjo == 'dan') {
+                        danjo = 1;  // 男性
+                    } else {
+                        danjo = 2;  // 女性
+                    }
+                    //
+                    // DBにお客様を登録する
+                    //
+                    db.dat_member.create({
+                        password: dataObject.md5Pass,
                         name: dataObject.onamae,
                         email: dataObject.email,
                         postal1: dataObject.postal1,
                         postal2: dataObject.postal2,
                         address: dataObject.address,
-                        tel: dataObject.tel
-                    },
-                    {
-                        returning: true
-                    }
-                ).then((result) => {
-                    let lastcode = result.code;
-
-                    let createRecordData = [];
-                    for (let i = 0; i < dataObject.cart.length; i++) {
-                        let recordObject = {
-                            code_sales: lastcode,
-                            code_product: dataObject.cart[i].code,
-                            price: dataObject.cart[i].price,
-                            quantity: dataObject.cart[i].kazu
-                        }
-                        createRecordData.push(recordObject);
-                    }
-
-                    //
-                    // DBに注文明細を保存する
-                    //
-                    db.dat_sales_product.bulkCreate(createRecordData)
-                        .then((result) => {
-                            //
-                            // メール送信
-                            //
-                            this._sendMail(dataObject);
-
-                            //
-                            // カートを空にする
-                            //
-                            if (req.session.cart) {
-                                req.session.cart = null;
-                            }
-                            if (req.session.kazu) {
-                                req.session.kazu = null;
-                            }
-
-                            // Viewへ
-                            res.render(ShopConst.buildViewPath('shop_form_done'), dataObject);
-                        }).catch((e) => {
-                            // console.log(e);
-                            // next();
-                            res.send('ただいま障害により大変ご迷惑をお掛けしております。');
-                        });
-                }).catch((e) => {
-                    // console.log(e);
-                    // next();
-                    res.send('ただいま障害により大変ご迷惑をお掛けしております。');
-                });
+                        tel: dataObject.tel,
+                        danjo: danjo,
+                        born: dataObject.birth
+                    }).then((result) => {
+                        // メンバーコードを追加設定
+                        shopFormDoneData.code_member = result.code;
+                        // データオブジェクトを再取得
+                        dataObject = shopFormDoneData.dataObject;
+                        // 次の処理
+                        this._dbStoreSalesData(dataObject, req, res);
+                    }).catch((e) => {
+                        // console.log(e);
+                        // next();
+                        res.send('ただいま障害により大変ご迷惑をお掛けしております。');
+                    });
+                } else {
+                    // 次の処理
+                    this._dbStoreSalesData(dataObject, req, res);
+                }
             }).catch((e) => {
                 // console.log(e);
                 // next();
@@ -138,6 +116,75 @@ module.exports = class ShopFormDoneController extends SuperShopController {
             // リダイレクト
             res.redirect(ShopConst.buildViewPath('shop_cartlook'));
         }
+    }
+
+    /**
+     * 
+     * @param {*} dataObject 
+     */
+    _dbStoreSalesData(dataObject, req, res) {
+        //
+        // DBに注文データを保存する
+        //
+        db.dat_sales.create(
+            {
+                code_member: dataObject.code_member,
+                name: dataObject.onamae,
+                email: dataObject.email,
+                postal1: dataObject.postal1,
+                postal2: dataObject.postal2,
+                address: dataObject.address,
+                tel: dataObject.tel
+            },
+            {
+                returning: true
+            }
+        ).then((result) => {
+            let lastcode = result.code;
+
+            let createRecordData = [];
+            for (let i = 0; i < dataObject.cart.length; i++) {
+                let recordObject = {
+                    code_sales: lastcode,
+                    code_product: dataObject.cart[i].code,
+                    price: dataObject.cart[i].price,
+                    quantity: dataObject.cart[i].kazu
+                }
+                createRecordData.push(recordObject);
+            }
+
+            //
+            // DBに注文明細を保存する
+            //
+            db.dat_sales_product.bulkCreate(createRecordData)
+                .then((result) => {
+                    //
+                    // メール送信
+                    //
+                    this._sendMail(dataObject);
+
+                    //
+                    // カートを空にする
+                    //
+                    if (req.session.cart) {
+                        req.session.cart = null;
+                    }
+                    if (req.session.kazu) {
+                        req.session.kazu = null;
+                    }
+
+                    // Viewへ
+                    res.render(ShopConst.buildViewPath('shop_form_done'), dataObject);
+                }).catch((e) => {
+                    // console.log(e);
+                    // next();
+                    res.send('ただいま障害により大変ご迷惑をお掛けしております。');
+                });
+        }).catch((e) => {
+            // console.log(e);
+            // next();
+            res.send('ただいま障害により大変ご迷惑をお掛けしております。');
+        });
     }
 
     /**
@@ -158,6 +205,13 @@ module.exports = class ShopFormDoneController extends SuperShopController {
                 mailMessage += `${dataObject.cart[i].name} ${dataObject.cart[i].price}円 x ${dataObject.cart[i].kazu}個 = ${syokei}円`;
                 mailMessage += "\n";
             }
+        }
+        if (dataObject.chumon == 'chumontouroku') {
+            mailMessage += "\n";
+            mailMessage += "会員登録が完了いたしました。\n";
+            mailMessage += "次回からメールアドレスとパスワードでログインしてください。\n";
+            mailMessage += "ご注文が簡単にできるようになります。\n";
+            mailMessage += "\n";
         }
         mailMessage += "送料は無料です。\n";
         mailMessage += "---------------\n";

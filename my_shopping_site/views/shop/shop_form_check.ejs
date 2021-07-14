@@ -53,7 +53,26 @@
         <%- tel %><br />
         <br />
     <% } %>
-
+    <% if (chumon == 'chumontouroku') { %>
+        <% if (!isPassInputOk) { %>
+            パスワードが入力されていません。<br/>
+            <% okFlg = false; %>
+        <% } %>
+        <% if (!isPassCompareOk) { %>
+            パスワードが一致しません。<br/>
+            <% okFlg = false; %>
+        <% } %>
+        性別<br/>
+        <% if (danjo == 'dan') { %>
+            男性<br/>
+        <% } else { %>
+            女性<br/>
+        <% } %>
+        <br/>
+        生まれ年<br/>
+        <%- birth %>年代<br/>
+        <br/>
+    <% } %>
     <% if (okFlg) { %>
     <form method="POST" action="shop_form_done">
         <input type="hidden" name="onamae" value="<%- onamae %>">
@@ -62,6 +81,10 @@
         <input type="hidden" name="postal2" value="<%- postal2 %>">
         <input type="hidden" name="address" value="<%- address %>">
         <input type="hidden" name="tel" value="<%- tel %>">
+        <input type="hidden" name="chumon" value="<%- chumon %>">
+        <input type="hidden" name="pass" value="<%- pass %>">
+        <input type="hidden" name="danjo" value="<%- danjo %>">
+        <input type="hidden" name="birth" value="<%- birth %>">
         <input type="button" onclick="history.back()" value="戻る">
         <input type="submit" value="OK"><br />
     </form>

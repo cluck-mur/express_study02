@@ -16,10 +16,29 @@ module.exports = class ShopFormDoneData extends ShopCartlookData {
     // _isPostal2Ok = false;
     // _isTelOk = false;
 
+    _chumon = null;
+    _pass = null;
+    _danjo = null;
+    _birth = null;
+    _code_member = null;
     /**
      * コンストラクター
      */
-    constructor(shopProductListInCart, cart, kazu, onamae, email, postal1, postal2, address, tel) {
+    constructor(
+        shopProductListInCart,
+        cart,
+        kazu,
+        onamae,
+        email,
+        postal1,
+        postal2,
+        address,
+        tel,
+        chumon,
+        pass,
+        danjo,
+        birth
+    ) {
         super(shopProductListInCart, cart, kazu);
 
         this._onamae = onamae;
@@ -29,10 +48,18 @@ module.exports = class ShopFormDoneData extends ShopCartlookData {
         this._address = address;
         this._tel = tel;
 
+        this._chumon = chumon;
+        this._pass = pass;
+        this._danjo = danjo;
+        this._birth = birth;
+
+        this._code_member = 0;
+
         // this._isEmailOk = false;
         // this._isPostal1Ok = false;
         // this._isPostal2Ok = false;
         // this._isTelOk = false;
+        this.md5Pass = this._pass;
     }
 
     get onamae() {
@@ -53,7 +80,25 @@ module.exports = class ShopFormDoneData extends ShopCartlookData {
     get tel() {
         return this._tel;
     }
+    get chumon() {
+    return this._chumon;
+    }
+    get pass() {
+        return this._pass;
+    }
+    get danjo() {
+        return this._danjo;
+    }
+    get birth() {
+        return this._birth;
+    }
 
+    get code_member() {
+        return this._code_member;
+    }
+    set code_member(code_member) {
+        this._code_member = code_member;
+    }
     // get isEmailOk() {
     //     return this._isEmailOk;
     // }
@@ -99,7 +144,11 @@ module.exports = class ShopFormDoneData extends ShopCartlookData {
         superObject['postal2'] = this.postal2;
         superObject['address'] = this.address;
         superObject['tel'] = this.tel;
-        // isOnamaeOk: this.isOnamaeOk,
+        superObject['chumon'] = this._chumon;
+        superObject['pass'] = this._pass;
+        superObject['danjo'] = this._danjo;
+        superObject['birth'] = this._birth;
+       // isOnamaeOk: this.isOnamaeOk,
         // isEmailOk: this.isEmailOk,
         // isPostal1Ok: this.isPostal1Ok,
         // isPostal2Ok: this.isPostal2Ok,

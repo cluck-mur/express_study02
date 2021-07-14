@@ -34,6 +34,8 @@ sequelize model:generate --name dat_sales --attributes code:integer,date:date,co
 
 sequelize model:generate --name dat_sales_product --attributes code:integer,code_sales:integer,code_product:integer,price:integer,quantity:integer
 
+sequelize model:generate --name dat_member --attributes code:integer,date:date,password:string,name:string,email:string,postal1:string,postal2:string,address:string,tel:string,danjo:integer,born:integer
+
 ------------------------------
 （参考）
 【NodeでWebアプリ】(1) Express.jsをセットアップ = https://blog.otasys.co.jp/2019/07/01/express-1/
