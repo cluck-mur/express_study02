@@ -57,6 +57,7 @@ var kazuChangeRouter = require('./' + ShopConst.buildRoutePathForRequire('kazu_c
 var shopFormCheckRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_form_check'));
 var shopFormDoneRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_form_done'));
 var memberLoginCheckRouter = require('./' + ShopConst.buildRoutePathForRequire('member_login_check'));
+var memberLogoutRouter = require('./' + ShopConst.buildRoutePathForRequire('member_logout'));
 
 var app = express();
 
@@ -127,6 +128,7 @@ app.use('/shop/kazu_change', kazuChangeRouter);
 app.use('/shop/shop_form_check', shopFormCheckRouter);
 app.use('/shop/shop_form_done', shopFormDoneRouter);
 app.use('/shop/member_login_check', memberLoginCheckRouter);
+app.use('/shop/member_logout', memberLogoutRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

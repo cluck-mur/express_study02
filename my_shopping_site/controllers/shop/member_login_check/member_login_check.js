@@ -28,7 +28,7 @@ module.exports = class StaffLoginCheckController extends SuperController {
 
         // パスワードを確認 （データベースから取得）
         db.dat_member.findAll({
-            attributes: ['code'],
+            attributes: ['code', 'name'],
             where: {
                 email: memberEmail,
                 password: memberLoginCheckData.md5Pass,

@@ -1,8 +1,8 @@
 'use strict';
-const StaffLoginConst = require('../common/staff_login_const');
+const ShopConst = require('../common/shop_const');
 const SuperController = require('../../common/super_controller');
 
-module.exports = class StaffLogoutController extends SuperController {
+module.exports = class MemberLogoutController extends SuperController {
     /**
      * constructor
      * コンストラクタ
@@ -20,15 +20,15 @@ module.exports = class StaffLogoutController extends SuperController {
     controller(req, res, next) {
         // セッション破棄
         // req.session.destroy();  // セッション破棄
-        if (req.session.login) {
-            req.session.login = null;
+        if (req.session.member_login) {
+            req.session.member_login = null;
         }
-        if (req.session.staff_code) {
-            req.session.staff_code = null;
+        if (req.session.member_code) {
+            req.session.member_code = null;
         }
-        if (req.session.staff_name) {
-            req.session.staff_name = null;
-        }
-        res.render(StaffLoginConst.buildViewPath('staff_logout'), {});
+        if (req.session.member_name) {
+            req.session.member_name = null;
+        }        
+        res.render(ShopConst.buildViewPath('member_logout'), {});
     }
 }
