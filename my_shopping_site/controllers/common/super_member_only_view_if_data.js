@@ -4,28 +4,36 @@ const SuperViewIfData = require('./super_view_if_data');
 
 
 module.exports = class SuperMemberOnlyViewIfData extends SuperViewIfData {
-    #sessionMemberLogin = false;
-    #sessionMemberName = null;
+    _sessionMemberLogin = false;
+    _sessionMemberCode = null;
+    _sessionMemberName = null;
 
     /**
      * コンストラクター
      */
     constructor() {
         super();
-        this.#sessionMemberLogin = false;
-        this.#sessionMemberName = null;
+        this._sessionMemberLogin = false;
+        this._sessionMemberCode = null;
+        this._sessionMemberName = null;
     }
 
     get sessionMemberLogin() {
-        return this.#sessionMemberLogin;
+        return this._sessionMemberLogin;
     }
     set sessionMemberLogin(setData) {
-        this.#sessionMemberLogin = setData;
+        this._sessionMemberLogin = setData;
+    }
+    get sessionMemberCode() {
+        return this._sessionMemberCode;
+    }
+    set sessionMemberCode(setData) {
+        this._sessionMemberCode = setData;
     }
     get sessionMemberName() {
-        return this.#sessionMemberName;
+        return this._sessionMemberName;
     }
     set sessionMemberName(setData) {
-        this.#sessionMemberName = setData;
+        this._sessionMemberName = setData;
     }
 };

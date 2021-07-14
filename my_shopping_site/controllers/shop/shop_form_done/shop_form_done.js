@@ -27,9 +27,11 @@ module.exports = class ShopFormDoneController extends SuperShopController {
         this.sessionRegerateId(req, res);
         // セッションを確認
         let sessionMemberLogin = false;
+        let sessionMemberCode = null;
         let sessionMemberName = null;
         if (req.session.member_login) {
             sessionMemberLogin = true;
+            sessionMemberCode = req.session.member_code;
             sessionMemberName = req.session.member_name;
         }
 
@@ -67,6 +69,7 @@ module.exports = class ShopFormDoneController extends SuperShopController {
                     sanitized.body.birth
                 );
                 shopFormDoneData.sessionMemberLogin = sessionMemberLogin;
+                shopFormDoneData.sessionMemberCode = sessionMemberCode;
                 shopFormDoneData.sessionMemberName = sessionMemberName;
 
                 let dataObject = shopFormDoneData.dataObject;
@@ -123,12 +126,18 @@ module.exports = class ShopFormDoneController extends SuperShopController {
      * @param {*} dataObject 
      */
     _dbStoreSalesData(dataObject, req, res) {
+        let code_member = null;
+        if (dataObject.code_member) {
+            code_member = dataObject.code_member;
+        } else {
+            code_member = dataObject.sessionMemberCode;
+        }
         //
         // DBに注文データを保存する
         //
         db.dat_sales.create(
             {
-                code_member: dataObject.code_member,
+                code_member: code_member,
                 name: dataObject.onamae,
                 email: dataObject.email,
                 postal1: dataObject.postal1,

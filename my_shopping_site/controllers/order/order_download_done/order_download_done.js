@@ -70,11 +70,11 @@ module.exports = class OrderDownloadDoneController extends SuperOrderController 
                 let filePath = '/' + dirPath + '/' + newUuid;
 
                 // データオブジェクト作成
-                let productListData = new OrderDownloadDoneData(result, filePath);
-                productListData.sessionLogin = true;
-                productListData.sessionStaffName = req.session.staff_name;
+                let orderDownloadDoneData = new OrderDownloadDoneData(result, filePath);
+                orderDownloadDoneData.sessionLogin = true;
+                orderDownloadDoneData.sessionStaffName = req.session.staff_name;
 
-                let dataObject = productListData.dataObject;
+                let dataObject = orderDownloadDoneData.dataObject;
 
                 //
                 // csvファイル作成

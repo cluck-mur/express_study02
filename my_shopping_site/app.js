@@ -58,6 +58,7 @@ var shopFormCheckRouter = require('./' + ShopConst.buildRoutePathForRequire('sho
 var shopFormDoneRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_form_done'));
 var memberLoginCheckRouter = require('./' + ShopConst.buildRoutePathForRequire('member_login_check'));
 var memberLogoutRouter = require('./' + ShopConst.buildRoutePathForRequire('member_logout'));
+var shopKantanCheckRouter = require('./' + ShopConst.buildRoutePathForRequire('shop_kantan_check'));
 
 var app = express();
 
@@ -129,6 +130,7 @@ app.use('/shop/shop_form_check', shopFormCheckRouter);
 app.use('/shop/shop_form_done', shopFormDoneRouter);
 app.use('/shop/member_login_check', memberLoginCheckRouter);
 app.use('/shop/member_logout', memberLogoutRouter);
+app.use('/shop/shop_kantan_check', shopKantanCheckRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

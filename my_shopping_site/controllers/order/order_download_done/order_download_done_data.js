@@ -25,7 +25,7 @@ module.exports = class OrderDownloadDoneData extends SuperOrderData {
                     postal2: element.postal2,
                     address: element.address,
                     tel: element.tel,
-                    code_product: dat_sales_product.code,
+                    code_product: dat_sales_product.code_product,
                     mst_product_name: dat_sales_product.mst_product.name,
                     price: dat_sales_product.price,
                     quantity: dat_sales_product.quantity

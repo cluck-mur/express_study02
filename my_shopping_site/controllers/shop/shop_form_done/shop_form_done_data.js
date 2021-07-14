@@ -148,14 +148,16 @@ module.exports = class ShopFormDoneData extends ShopCartlookData {
         superObject['pass'] = this._pass;
         superObject['danjo'] = this._danjo;
         superObject['birth'] = this._birth;
+        superObject['code_member'] = this._code_member;
         superObject['md5Pass'] = this.md5Pass;
        // isOnamaeOk: this.isOnamaeOk,
         // isEmailOk: this.isEmailOk,
         // isPostal1Ok: this.isPostal1Ok,
         // isPostal2Ok: this.isPostal2Ok,
         // isTelOk: this.isTelOk,
-        // sessionMemberLogin: this.sessionMemberLogin,
-        // sessionMemberName: this.sessionMemberName,
+        superObject['sessionMemberLogin'] = this.sessionMemberLogin;
+        superObject['sessionMemberCode'] = this.sessionMemberCode;
+        superObject['sessionMemberName'] = this.sessionMemberName;
         return superObject;
     }
 }
